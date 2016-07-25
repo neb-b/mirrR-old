@@ -1,5 +1,4 @@
 import React from 'react'
-import ProgressBar from 'progressbar.js'
 
 export default (props) => {
   const time = props.time
