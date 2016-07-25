@@ -40,6 +40,7 @@ app.use('/twitter', require('./routes/twitter'))
 app.use('/google', require('./routes/google_trends'))
 app.use('/calendar', require('./routes/calendar'))
 app.use('/reddit', require('./routes/reddit'))
+app.use('/timer', require('./routes/timer'))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

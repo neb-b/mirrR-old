@@ -13,6 +13,7 @@ import Twitter from './components/twitter/twitter'    // Current twitter timelin
 import Mic from './components/speech/mic'             // Search with voice
 import Google from './components/google/google'       // Current Google trends
 import Calendar from './components/calendar/calendar' // Basic Calendar
+import Timer from './components/timer/timer'          // Countdown timer
 
 const availableComponents = {
   Greeting,
@@ -22,7 +23,8 @@ const availableComponents = {
   Twitter,
   Mic,
   Google,
-  Calendar
+  Calendar,
+  Timer
 }
 
 // Fetch current components to be used from Node server
