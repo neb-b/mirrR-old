@@ -17,7 +17,6 @@ export default class CountdownTimer extends Component {
     const socket = io(url)
 
     socket.on('start-timer', (data) => {
-      console.log('timer socket')
       this.setState({
         currentTimerValue: data.time,
         initialTimerValue: data.time
@@ -28,11 +27,14 @@ export default class CountdownTimer extends Component {
           currentTimerValue: this.state.currentTimerValue - 1
         })
 
+        // Once timer reaches zero, clearInterval
         if (!this.state.currentTimerValue) clearInterval(timerUpdate)
       }, 1000)
     })
   }
 
+  // If current timer value, format seconds into mm:ss
+  // If no curren timer, return null
   getFormattedTime(time) {
     if (!time) return null
 
