@@ -1,0 +1,158 @@
+body {
+  font-family: 'Assistant', sans-serif;
+  font-weight: 300;
+  font-size: .5em;
+  /*color: #fff;
+  background-color: #000;*/
+}
+
+h1 {
+  font-weight: 200;
+  font-size: 4em;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  padding-bottom: 20px;
+}
+
+/* Greeting */
+.greeting {
+  text-align: center;
+}
+
+
+/* Google Trends*/
+.google_trends {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  overflow: hidden;
+  text-align: center;
+}
+.google_trends li {
+  display: inline-block;
+  padding: 0 5px;
+}
+.google_trends .trend_date,
+.google_trends .trend_text {
+  padding: 0 10px;
+}
+.google_trends .trend_date {
+  font-size: .8em;
+}
+
+
+/* Time */
+.time {
+  float: right;
+}
+.time * {
+  text-align: right;
+}
+.time .date {
+  font-weight: 200;
+}
+
+
+/* Weather */
+.weather {
+  display: inline-block;
+  /*position: absolute;*/
+  width: 25%;
+  max-width: 400px;
+}
+
+.weather_current * {
+  display: inline-block;
+}
+
+.weather_current_temp {
+  padding-right: 30px;
+}
+
+.weather_current_icon {
+  height: 45px;
+  width: auto;
+  transform: translateY(5px);
+}
+
+.weather_current_summary {
+  width: 30%;
+  min-width: 600px;
+}
+
+
+/* News Headlines */
+.news {
+  position: absolute;
+  bottom: 0;
+  right: 5%;
+  width: 30%;
+  min-width: 200px;
+}
+.news_title {
+  font-weight: 400;
+}
+.news_abstract {
+  font-weight: 300;
+}
+
+
+/* Calendar */
+.calendar {
+  background-color: #68b9cb;
+  height: 200px;
+  width: 200px;
+  /*position: relative;*/
+}
+
+
+/* Twitter */
+.twitter {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  height: 60%;
+  min-height: 300px;
+  width: 25%;
+  min-width: 250px;
+  list-style-type: none;
+  overflow: hidden;
+}
+.twitter_tweet {
+  padding: 15px 0;
+}
+
+.twitter_user {
+}
+.twitter_img {
+  max-width: 100%;
+}
+.twitter_time {
+  padding-left: 5px;
+}
+.twitter_info {
+  font-size: .8em;
+  padding-bottom: 8px;
+}
+/* Random time and margin-top to scan through all(?) tweets. */
+.twitter .twitter_tweet:first-child {
+  animation-duration: 350s;
+  animation-name: scroll;
+  animation-timing-function: linear;
+}
+
+@keyframes scroll {
+  from {
+    margin-top: 0;
+  }
+
+  to {
+    margin-top: -3000%;
+  }
+}
