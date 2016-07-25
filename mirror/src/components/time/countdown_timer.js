@@ -8,9 +8,11 @@ export default class CountdownTimer extends Component {
     super()
 
     this.getFormattedTime = this.getFormattedTime.bind(this)
+
     this.state = {
       currentTimerValue: null,
-      initialTimerValue: null
+      initialTimerValue: null,
+      slider: 1
     }
 
     const url = 'http://localhost:5000'
