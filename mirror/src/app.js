@@ -59,6 +59,7 @@ class App extends Component {
     if (!components) return <h1>No components loaded</h1>
 
     // If only one component is loaded from the server it is sent as a string
+    // Shouldn't have to do this once request comes from a phone
     if (typeof components === 'string') {
       return this.createComponent(components)
     }
@@ -68,13 +69,12 @@ class App extends Component {
 
   // Render loads components from props first
   render() {
-    if (!this.props.components) return <Loader component="app" />
-
-    const components = this.props.components.data.components
+    const components = this.props.components
+    if (!components) return <Loader component="app" />
 
     return (
       <div>
-        {this.state.components ? this.renderComponents(this.state.components) : this.renderComponents(components)}
+        {this.state.components ? this.renderComponents(this.state.components) : this.renderComponents(components.data.components)}
       </div>
     )
   }
