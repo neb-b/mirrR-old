@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import io from 'socket.io-client'
+import CountdownTimer from './countdown_timer'
+
 let timerUpdate = null
 
 class Timer extends Component {
@@ -12,7 +14,10 @@ class Timer extends Component {
     var socket = io(url)
 
     socket.on('start-timer', (data) => {
-      this.setState({time: data.time})
+      this.setState({
+        time: data.time,
+        timeLeft: data.time
+      })
 
       // If timer already going, clearInterval and start new timer
       if (timerUpdate) clearInterval(timerUpdate)
@@ -28,10 +33,13 @@ class Timer extends Component {
   }
 
   render() {
-    if (!this.state.time) return null
+    const time = this.state.time
+    if (!time) return null
 
     return (
-      <h1>{this.state.time}</h1>
+      <div className="timer">
+        <CountdownTimer time={time} startTime={this.state.timeLeft} />
+      </div>
     )
   }
 }

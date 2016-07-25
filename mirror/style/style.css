@@ -156,3 +156,9 @@ h1 {
     margin-top: -3000%;
   }
 }
+
+
+/* Timer */
+.timer {
+  float: right;
+}
