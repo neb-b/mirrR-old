@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { fetchWeather } from '../../actions/action_weather'
 import Loader from '../loader/loader'
-import WeeklyWeather from './weather_weekly'
 import getWeatherIcon from './weather_icon'
 
 class Weather extends Component {
@@ -44,10 +43,3 @@ function mapStateToProps({ weather }) {
 }
 
 export default connect(mapStateToProps, { fetchWeather })(Weather)
-
-
-
-// Other layouts
-//
-// <WeeklyWeather weather={weather.daily.data} />
-//
