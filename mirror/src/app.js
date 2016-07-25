@@ -38,7 +38,9 @@ class App extends Component {
     this.renderComponents = this.renderComponents.bind(this)
     this.createComponent = this.createComponent.bind(this)
 
-    var socket = io('http://localhost:5000')
+    const url = 'http://localhost:5000'
+    var socket = io(url)
+
     socket.on('update-components', (data) => {
       this.setState({ components: data.components })
     })
