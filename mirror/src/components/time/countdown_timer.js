@@ -47,8 +47,6 @@ export default class CountdownTimer extends Component {
     })
   }
 
-
-
   newTimer(minutes, seconds) {
     if (this.state.currentTimerValue) this.stopTimer()
 
@@ -57,6 +55,8 @@ export default class CountdownTimer extends Component {
     if (!seconds) time = minutes * 60
     if (!minutes) time = seconds
 
+    // Set state with new timer
+    // Set timerDegrees to 360 for complete circle
     this.setState({
       currentTimerValue: time,
       initialTimerValue: time,

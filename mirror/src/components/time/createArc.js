@@ -1,5 +1,7 @@
-export default function describeArc(x, y, radius, startAngle, endAngle){
+// Function to create an arc using svg path element
+// Taken from http://stackoverflow.com/questions/5736398/how-to-calculate-the-svg-path-for-an-arc-of-a-circle
 
+export default function describeArc(x, y, radius, startAngle, endAngle){
   var start = polarToCartesian(x, y, radius, endAngle);
   var end = polarToCartesian(x, y, radius, startAngle);
 
