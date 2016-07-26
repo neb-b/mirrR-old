@@ -72,13 +72,13 @@ h1 {
 }
 .countdown_progress h2 {
   margin-top: -100px;
+  text-align: center;
 }
 
 
 /* Weather */
 .weather {
   display: inline-block;
-  /*position: absolute;*/
   width: 25%;
   max-width: 400px;
 }
