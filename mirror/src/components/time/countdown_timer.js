@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import io from 'socket.io-client'
+import annyang from 'annyang'
 
 let timerUpdate = null
 
@@ -8,32 +9,44 @@ export default class CountdownTimer extends Component {
     super()
 
     this.getFormattedTime = this.getFormattedTime.bind(this)
+    this.newTimer = this.newTimer.bind(this)
+    this.stopTimer = this.stopTimer.bind(this)
 
     this.state = {
       currentTimerValue: null,
-      initialTimerValue: null,
-      slider: 1
+      initialTimerValue: null
     }
+  }
 
-    const url = 'http://localhost:5000'
-    const socket = io(url)
+  componentDidMount() {
+    if (annyang) {
+      var commands = {
+        'start timer': this.newTimer(2),
+        'start a timer': this.newTimer(2),
+        'new timer': this.newTimer(2),
+        'timer': this.newTimer(2),
+        'start timer for *time minutes': this.newTimer(minutes),
+        'start timer for *minutes minutes and *seconds': this.newTimer(minutes, seconds),
+        'stop timer': this.stopTimer()
+      }
 
-    socket.on('start-timer', (data) => {
-      if (this.state.currentTimerValue) clearInterval(timerUpdate)
+      annyang.addCommands(commands)
+      annyang.start({continuous: false})
+    }
+  }
 
-      this.setState({
-        currentTimerValue: data.time,
-        initialTimerValue: data.time
-      })
+  newTimer(minutes, seconds) {
+    let time = minutes * 60 + seconds
+    this.setState({
+      currentTimerValue: time,
+      initialTimerValue: time
+    })
+  }
 
-      timerUpdate = setInterval(() => {
-        this.setState({
-          currentTimerValue: this.state.currentTimerValue - 1
-        })
-
-        // Once timer reaches zero, clearInterval
-        if (!this.state.currentTimerValue) clearInterval(timerUpdate)
-      }, 1000)
+  stopTimer() {
+    this.setState({
+      currentTimerValue: null,
+      initialTimerValue: null
     })
   }
 
