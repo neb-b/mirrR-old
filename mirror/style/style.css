@@ -22,6 +22,7 @@ h1 {
 /* Greeting */
 .greeting {
   text-align: center;
+  padding-bottom: 50px;
 }
 
 
@@ -50,11 +51,33 @@ h1 {
 .time {
   float: right;
 }
-.time * {
+.time .clock {
+  text-align: center;
+}
+.time .date {
   text-align: right;
+  padding-right: 10px;
 }
 .time .date {
   font-weight: 200;
+}
+
+/* Timer */
+.timer {
+  float: right;
+}
+.countdown_timer {
+  position: absolute;
+  margin-top: -190px;
+  right: 5px;
+  height: 240px;
+  width: 240px;
+  border: 2em solid #FFEA82;
+  border-radius: 50%
+}
+.countdown_timer h2 {
+  margin-top: 125px;
+  padding-left: 45px;
 }
 
 
@@ -102,15 +125,6 @@ h1 {
 }
 
 
-/* Calendar */
-.calendar {
-  background-color: #68b9cb;
-  height: 200px;
-  width: 200px;
-  /*position: relative;*/
-}
-
-
 /* Twitter */
 .twitter {
   margin: 0;
@@ -155,10 +169,4 @@ h1 {
   to {
     margin-top: -3000%;
   }
-}
-
-
-/* Timer */
-.timer {
-  float: right;
 }
