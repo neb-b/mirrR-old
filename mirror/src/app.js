@@ -10,7 +10,7 @@ import Time from './components/time/time'             // Clock with date
 import Weather from './components/weather/weather'    // Current temperature and 5 day forecast
 import News from './components/news/news'             // Top headlines from NYT
 import Twitter from './components/twitter/twitter'    // Current twitter timeline
-import Mic from './components/speech/mic'             // Search with voice
+import Music from './components/music/music'         // Play music with your voice
 import Google from './components/google/google'       // Current Google trends
 import Calendar from './components/calendar/calendar' // Basic Calendar
 
@@ -20,7 +20,7 @@ const availableComponents = {
   Weather,
   News,
   Twitter,
-  Mic,
+  Music,
   Google,
   Calendar
 }
@@ -50,7 +50,6 @@ class App extends Component {
   // Function that takes the name of a component and returns the actual component
   // Creates NewComp from availableComponents
   createComponent(componentName) {
-    console.log('creating', componentName)
     const NewComp = availableComponents[componentName]
     return <NewComp key={componentName}/>
   }
@@ -72,10 +71,8 @@ class App extends Component {
 
   // Render loads components from props first
   render() {
-    console.log('rendering app')
     const components = this.props.components
     if (!components) return <Loader component="app" />
-    console.log('components', components)
 
     return (
       <div>
