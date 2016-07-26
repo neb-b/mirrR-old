@@ -40,7 +40,6 @@ export default class CountdownTimer extends Component {
     var socket = io(url)
 
     socket.on('start-timer', (data) => {
-      console.log('new timer')
       this.newTimer(data.minutes, data.seconds)
     })
   }
@@ -59,11 +58,11 @@ export default class CountdownTimer extends Component {
 
     timerUpdate = setInterval(() => {
       this.setState({ currentTimerValue: this.state.currentTimerValue - 1 })
+      if (!this.state.currentTimerValue) this.stopTimer()
     }, 1000)
   }
 
   stopTimer() {
-    console.log('stop timer')
     this.setState({
       currentTimerValue: null,
       initialTimerValue: null
