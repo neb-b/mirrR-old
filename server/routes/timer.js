@@ -6,7 +6,8 @@ const router = express.Router();
 router.post('/', function(req, res) {
   const io = req.io
   const payload = {
-    time: req.body.time
+    minutes: req.body.minutes,
+    seconds: req.body.seconds
   }
 
   io.emit('start-timer', payload)

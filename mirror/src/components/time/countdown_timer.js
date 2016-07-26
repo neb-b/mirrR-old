@@ -20,7 +20,7 @@ export default class CountdownTimer extends Component {
 
   // Needs more testing
   //
-  // componentDidMount() {
+  componentDidMount() {
   //   if (annyang) {
   //     var commands = {
   //       'start timer': this.newTimer(2),
@@ -35,40 +35,53 @@ export default class CountdownTimer extends Component {
   //     annyang.addCommands(commands)
   //     annyang.start({continuous: false})
   //   }
-  // }
-  //
-  // newTimer(minutes, seconds) {
-  //   console.log('New timer: ', minutes, seconds)
-  //   let time
-  //
-  //   if (!seconds) {
-  //     time = minutes * 60
-  //   } else {
-  //     time = minutes * 60 + seconds
-  //   }
-  //   this.setState({
-  //     currentTimerValue: time,
-  //     initialTimerValue: time
-  //   })
-  // }
-  //
-  // stopTimer() {
-  //   this.setState({
-  //     currentTimerValue: null,
-  //     initialTimerValue: null
-  //   })
-  // }
-  //
-  // // If current timer value, format seconds into mm:ss
-  // // If no curren timer, return null
-  // getFormattedTime(time) {
-  //   const minutes = Math.floor(time / 60)
-  //   let seconds = time - minutes * 60
-  //   if (seconds < 10) seconds = '0' + seconds
-  //   if (!seconds) seconds = '00'
-  //
-  //   return `${minutes}:${seconds}`
-  // }
+
+    const url = 'http://localhost:5000'
+    var socket = io(url)
+
+    socket.on('start-timer', (data) => {
+      console.log('new timer')
+      this.newTimer(data.minutes, data.seconds)
+    })
+  }
+
+
+
+  newTimer(minutes, seconds) {
+    if (this.state.currentTimerValue) this.stopTimer()
+
+    let time
+    if (minutes && seconds) time = minutes * 60 + Number(seconds)
+    if (!seconds) time = minutes * 60
+    if (!minutes) time = seconds
+
+    this.setState({currentTimerValue: time})
+
+    timerUpdate = setInterval(() => {
+      this.setState({ currentTimerValue: this.state.currentTimerValue - 1 })
+    }, 1000)
+  }
+
+  stopTimer() {
+    console.log('stop timer')
+    this.setState({
+      currentTimerValue: null,
+      initialTimerValue: null
+    })
+
+    if (timerUpdate) clearInterval(timerUpdate)
+  }
+
+  // If current timer value, format seconds into mm:ss
+  // If no curren timer, return null
+  getFormattedTime(time) {
+    const minutes = Math.floor(time / 60)
+    let seconds = time - minutes * 60
+    if (seconds < 10) seconds = '0' + seconds
+    if (!seconds) seconds = '00'
+
+    return `${minutes}:${seconds}`
+  }
 
   render() {
     if (!this.state.currentTimerValue) return null
