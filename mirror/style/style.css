@@ -52,7 +52,7 @@ h1 {
   float: right;
 }
 .time .clock {
-  text-align: center;
+  text-align: right;
 }
 .time .date {
   text-align: right;
@@ -63,21 +63,15 @@ h1 {
 }
 
 /* Timer */
-.timer {
-  float: right;
-}
 .countdown_timer {
-  position: absolute;
-  margin-top: -190px;
-  right: 5px;
-  height: 240px;
-  width: 240px;
-  border: 2em solid #FFEA82;
-  border-radius: 50%
+  /*position: relative;*/
 }
-.countdown_timer h2 {
-  margin-top: 125px;
-  padding-left: 45px;
+.countdown_progress {
+  margin-top: -200px;
+  margin-right: -65px;
+}
+.countdown_progress h2 {
+  margin-top: -100px;
 }
 
 

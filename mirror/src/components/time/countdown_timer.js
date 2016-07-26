@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import io from 'socket.io-client'
 import annyang from 'annyang'
+import createArc from './createArc'
 
 let timerUpdate = null
 
@@ -11,10 +12,12 @@ export default class CountdownTimer extends Component {
     this.getFormattedTime = this.getFormattedTime.bind(this)
     this.newTimer = this.newTimer.bind(this)
     this.stopTimer = this.stopTimer.bind(this)
+    this.getTimerDegrees = this.getTimerDegrees.bind(this)
 
     this.state = {
       currentTimerValue: null,
-      initialTimerValue: null
+      initialTimerValue: null,
+      timerDegrees: null
     }
   }
 
@@ -54,10 +57,18 @@ export default class CountdownTimer extends Component {
     if (!seconds) time = minutes * 60
     if (!minutes) time = seconds
 
-    this.setState({currentTimerValue: time})
+    this.setState({
+      currentTimerValue: time,
+      initialTimerValue: time,
+      timerDegrees: 360
+    })
 
     timerUpdate = setInterval(() => {
-      this.setState({ currentTimerValue: this.state.currentTimerValue - 1 })
+      this.setState({
+        currentTimerValue: this.state.currentTimerValue - 1,
+        timerDegrees: this.getTimerDegrees()
+      })
+
       if (!this.state.currentTimerValue) this.stopTimer()
     }, 1000)
   }
@@ -82,12 +93,24 @@ export default class CountdownTimer extends Component {
     return `${minutes}:${seconds}`
   }
 
+  getTimerDegrees() {
+    const initial = this.state.initialTimerValue
+    const current = this.state.currentTimerValue
+
+    return current / initial * 360
+  }
+
   render() {
     if (!this.state.currentTimerValue) return null
 
     return (
       <div className="countdown_timer">
-        <h2>{this.getFormattedTime(this.state.currentTimerValue)}</h2>
+        <div className="countdown_progress">
+          <svg height="300" width="300">
+            <path fill="none" stroke="#446688" strokeWidth="15" d={createArc(150, 150, 105, 0, this.state.timerDegrees)}/>
+          </svg>
+          <h2>{this.getFormattedTime(this.state.currentTimerValue)}</h2>
+        </div>
       </div>
     )
   }
