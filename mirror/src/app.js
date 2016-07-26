@@ -50,6 +50,7 @@ class App extends Component {
   // Function that takes the name of a component and returns the actual component
   // Creates NewComp from availableComponents
   createComponent(componentName) {
+    console.log('creating', componentName)
     const NewComp = availableComponents[componentName]
     return <NewComp key={componentName}/>
   }
@@ -71,8 +72,10 @@ class App extends Component {
 
   // Render loads components from props first
   render() {
+    console.log('rendering app')
     const components = this.props.components
     if (!components) return <Loader component="app" />
+    console.log('components', components)
 
     return (
       <div>
