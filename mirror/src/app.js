@@ -12,7 +12,7 @@ import News from './components/news/news'             // Top headlines from NYT
 import Twitter from './components/twitter/twitter'    // Current twitter timeline
 import Music from './components/music/music'         // Play music with your voice
 import Google from './components/google/google'       // Current Google trends
-import Calendar from './components/calendar/calendar' // Basic Calendar
+// import Calendar from './components/calendar/calendar' // Basic Calendar
 
 const availableComponents = {
   Greeting,
@@ -22,7 +22,7 @@ const availableComponents = {
   Twitter,
   Music,
   Google,
-  Calendar
+  // Calendar
 }
 
 // Fetch current components to be used from Node server

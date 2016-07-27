@@ -50,7 +50,6 @@ class Twitter extends Component {
 
   render() {
     const tweets = this.props.tweets.data
-    console.log('tweets', tweets)
     if (!tweets) return <Loader component="twitter" />
 
     return (

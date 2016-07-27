@@ -24,20 +24,21 @@ export default class CountdownTimer extends Component {
   // Needs more testing
   //
   componentDidMount() {
-  //   if (annyang) {
-  //     var commands = {
-  //       'start timer': this.newTimer(2),
-  //       'start a timer': this.newTimer(2),
-  //       'new timer': this.newTimer(2),
-  //       'timer': this.newTimer(2),
-  //       'start timer for *length minutes': this.newTimer(length),
-  //       // 'start timer for *length minutes and *seconds': this.newTimer(length, seconds),
-  //       'stop timer': this.stopTimer()
-  //     }
-  //
-  //     annyang.addCommands(commands)
-  //     annyang.start({continuous: false})
-  //   }
+    // if (annyang) {
+    //   var commands = {
+    //     'hello': console.log('hello')
+    //     // 'start timer': this.newTimer(2),
+    //     // 'start a timer': this.newTimer(2),
+    //     // 'new timer': this.newTimer(2),
+    //     // 'timer': this.newTimer(2),
+    //     // 'start timer for *length minutes': this.newTimer(length),
+    //     // // 'start timer for *length minutes and *seconds': this.newTimer(length, seconds),
+    //     // 'stop timer': this.stopTimer()
+    //   }
+    //
+    //   annyang.addCommands(commands)
+    //   annyang.start({continuous: false})
+    // }
 
     const url = 'http://localhost:5000'
     var socket = io(url)
@@ -55,6 +56,7 @@ export default class CountdownTimer extends Component {
     if (!seconds) time = minutes * 60
     if (!minutes) time = seconds
 
+    console.log('time', time)
     // Set state with new timer
     // Set timerDegrees to 360 for complete circle
     this.setState({
