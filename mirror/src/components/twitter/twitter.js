@@ -2,15 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchTweets } from '../../actions/action_twitter'
 import Loader from '../loader/loader'
-
-// need to implement
 import stringToDate from './twitter_date'
-// {moment().diff(moment(tweet.created_at), 'minutes')}
 
 class Twitter extends Component {
   constructor(props) {
     super(props)
     this.props.fetchTweets()
+
+    this.checkRetweeted = this.checkRetweeted.bind(this)
   }
 
   componentDidMount() {
@@ -22,9 +21,18 @@ class Twitter extends Component {
     setInterval(this.props.fetchTweets, twitterUpdateInterval)
   }
 
+  checkRetweeted(tweet) {
+    if (tweet.retweeted_status.text) {
+      const user = tweeet.text.split(':')
+      return user + tweet.retweeted_status.text
+    }
+    return tweet.text
+  }
+
   renderCurrentTweets(tweet) {
     // Create tweet with username, screen_name, and time since tweet
     // If tweet contains image(s), show first image
+    // Currently showing if tweet is retweeted ("RT:") but not showing the original person who tweeted
     return (
       <li key={tweet.id} className="twitter_tweet">
         <div className="twitter_user">{tweet.user.name}</div>
@@ -33,7 +41,7 @@ class Twitter extends Component {
           <span className="twitter_time">{stringToDate(tweet.created_at)}</span>
         </div>
         <div>
-          <span className="twitter_text">{tweet.text}</span>
+          <span className="twitter_text">{tweet.retweeted_status ? tweet.retweeted_status.text : 'RT: ' + tweet.text}</span>
           {tweet.extended_entities ? <img className="twitter_img" src={tweet.extended_entities.media[0].media_url} /> : null}
         </div>
       </li>
@@ -42,7 +50,7 @@ class Twitter extends Component {
 
   render() {
     const tweets = this.props.tweets.data
-
+    console.log('tweets', tweets)
     if (!tweets) return <Loader component="twitter" />
 
     return (
