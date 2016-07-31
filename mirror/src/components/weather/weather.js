@@ -24,6 +24,7 @@ class Weather extends Component {
   render() {
     // If weather data, return weather information, else return "Getting weather..."
     const weather = this.props.weather.data
+    console.log('weather', weather)
     if (!weather) return <Loader component="weather" />
 
     return (
