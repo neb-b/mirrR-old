@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import io from 'socket.io-client'
-import CountdownTimer from './countdown_timer'
+// import CountdownTimer from './countdown_timer'
 
 let timeUpdate = null
 let timerUpdate = null
@@ -42,7 +42,6 @@ export default class Clock extends Component {
       <div className="time">
         <h1 className="clock">{this.state.time}</h1>
         <h3 className="date">{this.state.date}</h3>
-        <CountdownTimer />
       </div>
     )
   }
