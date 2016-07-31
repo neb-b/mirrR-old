@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import io from 'socket.io-client'
+// import io from 'socket.io-client'
 // import CountdownTimer from './countdown_timer'
 
 let timeUpdate = null
