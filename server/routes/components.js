@@ -14,7 +14,7 @@ router.put('/', function(req, res) {
   components = req.body.components || ""
 
   io.emit('update-components', { components: components })
-  res.send({ components })
+  res.send({ components: components })
 })
 
 
