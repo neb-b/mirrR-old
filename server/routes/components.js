@@ -6,7 +6,7 @@ const router = express.Router();
 let components = ['Google', 'Greeting', 'Time', 'Weather', 'News', 'Twitter']
 
 router.get('/', function(req, res, next) {
-  res.send({components})
+  res.send({ components: components })
 })
 
 router.put('/', function(req, res) {
