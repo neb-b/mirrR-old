@@ -2,4 +2,4 @@
 
 This is my customizable smart mirror made with React
 
-Talk to me on Twitter @seanyesmunt if you have questions!
+Talk to me on Twitter [@seanyesmunt](https://twitter.com/seanyesmunt) if you have questions!
