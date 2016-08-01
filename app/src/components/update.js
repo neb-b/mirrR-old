@@ -23,6 +23,7 @@ export default class Update extends Component {
     const url = 'http://192.168.1.13:5000/components'
     fetch(url)
       .then(function (data) {
+        // Wrong data being sent back
         console.log('data', data)
         this.setState({components: data.components})
       })
