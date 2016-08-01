@@ -6,7 +6,7 @@ const router = express.Router();
 let components = []
 
 router.get('/', function(req, res, next) {
-  let package = {
+  let payload = {
     components: components
   }
   console.log('package', package)
