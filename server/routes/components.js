@@ -6,8 +6,11 @@ const router = express.Router();
 let components = []
 
 router.get('/', function(req, res, next) {
-  console.log('sending components', components)
-  res.send(components)
+  const package = {
+    components: components
+  }
+  console.log('package', package)
+  res.send(package)
 })
 
 router.put('/', function(req, res) {
