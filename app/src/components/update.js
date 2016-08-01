@@ -14,19 +14,33 @@ export default class Update extends Component {
       ],
       components: []
     }
+
+    this.fetchComponents()
   }
 
-  _toggleComponent(componentName) {
-    if (this.state.components.indexOf(componentName) !== -1) {
+  fetchComponents() {
+    console.log('fetch')
+    const url = 'http://192.168.1.13:5000/components'
+    fetch(url)
+      .then(function (data) {
+        console.log('data', data)
+        this.setState({components: data.components})
+      })
+  }
+
+  _toggleComponent(toggledComponent) {
+    const index = this.state.components.indexOf(toggledComponent)
+    if (index === -1) {
       this.setState({
-        components: this.state.components.filter((component) => component !== componentName)
+        components: this.state.components.concat(toggledComponent)
       })
     } else {
       this.setState({
-        components: this.state.components.concat(componentName)
+        components: this.state.components.filter((component) => {
+          return component !== toggledComponent
+        })
       })
     }
-    this.sendUpdate()
   }
 
   sendUpdate() {
@@ -44,6 +58,7 @@ export default class Update extends Component {
   }
 
   renderSwitches(component) {
+    this.sendUpdate()
     return (
       <View key={component}>
         <Text>{component}</Text>
