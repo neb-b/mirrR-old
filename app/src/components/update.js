@@ -72,9 +72,13 @@ export default class Update extends Component {
   }
 
   render() {
+    if (this.state.components.length) {
+      this.sendUpdate()
+    }
+
     return (
       <View>
-        {this.state.available.map(this.renderSwitches.bind(this))}
+      {this.state.available.map(this.renderSwitches.bind(this))}
       </View>
     );
   }
