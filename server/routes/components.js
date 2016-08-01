@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 
-let components = ['Google', 'Time', 'News', 'Twitter']
+let components = []
 
 router.get('/', function(req, res, next) {
   res.send({ components: components })
