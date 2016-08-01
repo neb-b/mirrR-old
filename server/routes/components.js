@@ -9,8 +9,8 @@ router.get('/', function(req, res, next) {
   let payload = {
     components: components
   }
-  console.log('package', package)
-  res.send(package)
+  console.log('payload', payload)
+  res.send(payload)
 })
 
 router.put('/', function(req, res) {
