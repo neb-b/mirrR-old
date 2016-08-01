@@ -25,6 +25,7 @@ export default class Update extends Component {
       .then(function (data) {
         // Wrong data being sent back
         console.log('data', data)
+        this.sendUpdate()
         this.setState({components: data.components})
       })
   }
@@ -59,7 +60,6 @@ export default class Update extends Component {
   }
 
   renderSwitches(component) {
-    this.sendUpdate()
     return (
       <View key={component}>
         <Text>{component}</Text>
