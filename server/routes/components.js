@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 router.put('/', function(req, res) {
   const io = req.io
   components = req.body.components || ""
-
+  console.log('Components...', components)
   io.emit('update-components', { components: components })
   res.send({ components: components })
 })
