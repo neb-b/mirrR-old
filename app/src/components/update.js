@@ -22,11 +22,16 @@ export default class Update extends Component {
     console.log('fetch')
     const url = 'http://192.168.1.13:5000/components'
     fetch(url)
-      .then(function (data) {
+      .then(function (res) {
+        const data = res.data
+        console.log('res', res)
         // Wrong data being sent back
-        console.log('data', data)
-        this.sendUpdate()
-        this.setState({components: data.components})
+        if (!data) {
+          return this.setState({components: []})
+        }
+        this.setState({
+          components: data
+        })
       })
   }
 

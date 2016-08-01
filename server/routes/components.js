@@ -7,7 +7,7 @@ let components = []
 
 router.get('/', function(req, res, next) {
   console.log('sending components', components)
-  res.send({ components: components })
+  res.send(components)
 })
 
 router.put('/', function(req, res) {
