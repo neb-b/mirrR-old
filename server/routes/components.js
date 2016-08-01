@@ -11,6 +11,10 @@ router.get('/', function(req, res, next) {
 })
 
 router.put('/', function(req, res) {
+  if req.body.components === [] {
+    res.send({ components: components })
+    return 
+  }
   const io = req.io
   components = req.body.components || ""
   console.log('new components', components)
