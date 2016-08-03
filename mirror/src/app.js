@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchComponents } from './actions/action_components'
 import Loader from './components/loader/loader'
-import io from 'socket.io-client'
+import io from 'socket.io-client';
 
 // Import mirror components
 import Greeting from './components/greeting/greeting' // Small greeting
@@ -39,7 +39,7 @@ class App extends Component {
     this.createComponent = this.createComponent.bind(this)
 
     const url = 'http://localhost:5000'
-    var socket = io(url)
+    const socket = io(url)
 
     socket.on('update-components', (data) => {
       this.setState({ components: data.components })

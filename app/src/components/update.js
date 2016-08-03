@@ -9,10 +9,12 @@ export default class Update extends Component {
         'Greeting',
         'Google',
         'Time',
+        'Weather',
         'Twitter',
         'News'
       ],
-      components: []
+      components: [],
+      current: false
     }
 
     this.fetchComponents()
@@ -20,18 +22,21 @@ export default class Update extends Component {
 
   fetchComponents() {
     console.log('fetch')
-    const url = 'http://192.168.1.13:5000/components'
-    fetch(url)
-      .then(function (res) {
-        const data = res.data
-        console.log('res', res)
-        // Wrong data being sent back
-        if (!data) {
-          return this.setState({components: []})
+    const url = 'http://192.168.1.11:5000/components'
+    return fetch(url, {
+      method: 'GET'
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.components) {
+          return this.setState({
+            components: res.components,
+            current: true
+          })
         }
-        this.setState({
-          components: data
-        })
+      })
+      .catch((error) => {
+        console.error('error', error)
       })
   }
 
@@ -48,10 +53,13 @@ export default class Update extends Component {
         })
       })
     }
+
+    this.sendUpdate()
   }
 
   sendUpdate() {
-    const url = 'http://192.168.1.13:5000/components'
+    const url = 'http://192.168.1.11:5000/components'
+    console.log('sending update')
     fetch(url, {
       method: 'PUT',
       headers: {
@@ -62,6 +70,8 @@ export default class Update extends Component {
         components: this.state.components
       })
     })
+    .then((res) => console.log('Response', res))
+    .catch((error) => console.error(error))
   }
 
   renderSwitches(component) {
@@ -77,8 +87,13 @@ export default class Update extends Component {
   }
 
   render() {
-    if (this.state.components.length) {
-      this.sendUpdate()
+    console.log('render', this.state.components)
+    if (this.state.current === false) {
+      return (
+        <View>
+          <Text>Loading components...</Text>
+        </View>
+      )
     }
 
     return (
