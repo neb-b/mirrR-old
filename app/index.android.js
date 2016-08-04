@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   AppRegistry,
   StyleSheet,
@@ -6,7 +6,6 @@ import {
   View
 } from 'react-native';
 import UpdateButton from './src/components/update';
-
 
 class app extends Component {
   render() {

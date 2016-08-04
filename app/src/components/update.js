@@ -9,10 +9,12 @@ export default class Update extends Component {
         'Greeting',
         'Google',
         'Time',
+        'Weather',
         'Twitter',
         'News'
       ],
-      components: []
+      components: [],
+      current: false
     }
 
     this.fetchComponents()
@@ -21,17 +23,25 @@ export default class Update extends Component {
   fetchComponents() {
     console.log('fetch')
     const url = 'http://192.168.1.13:5000/components'
-    fetch(url)
-      .then(function (res) {
-        const data = res.data
-        console.log('res', res)
-        // Wrong data being sent back
-        if (!data) {
-          return this.setState({components: []})
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.components) {
+          console.log('res', response)
+          return this.setState({
+            components: response.components,
+            current: true
+          })
         }
-        this.setState({
-          components: data
-        })
+      })
+      .catch((error) => {
+        if (error) console.error('error', error)
       })
   }
 
@@ -52,6 +62,7 @@ export default class Update extends Component {
 
   sendUpdate() {
     const url = 'http://192.168.1.13:5000/components'
+    console.log('sending update')
     fetch(url, {
       method: 'PUT',
       headers: {
@@ -62,6 +73,9 @@ export default class Update extends Component {
         components: this.state.components
       })
     })
+    .then((res) => res.json())
+    .then((res) => console.log('Response', res))
+    .catch((error) => console.error(error))
   }
 
   renderSwitches(component) {
@@ -77,9 +91,15 @@ export default class Update extends Component {
   }
 
   render() {
-    if (this.state.components.length) {
-      this.sendUpdate()
+    if (this.state.current === false) {
+      return (
+        <View>
+          <Text>Loading components...</Text>
+        </View>
+      )
     }
+
+    this.sendUpdate()
 
     return (
       <View>

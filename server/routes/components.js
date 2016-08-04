@@ -1,25 +1,32 @@
 'use strict'
 
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
+const fs = require('fs')
+const path = require('path')
 
-let components = []
+const filePath = '../data/list.json'
+const file = path.join(__dirname, filePath)
 
 router.get('/', function(req, res, next) {
-  let payload = {
-    components: components
-  }
-  console.log('payload', payload)
-  res.send(payload)
+  let currentComponents = require(filePath)
+  console.log('current', currentComponents)
+  res.send({
+    components: currentComponents || ['Google']
+  })
 })
 
 router.put('/', function(req, res) {
-
   const io = req.io
-  components = req.body.components || ""
-  console.log('new components', components)
-  io.emit('update-components', { components: components })
-  res.send({ components: components })
+  const newComponents = req.body.components
+  console.log('newComponents', newComponents)
+  fs.writeFile(file, JSON.stringify(newComponents), function() {
+    const updatedComponents = {
+      components: newComponents
+    }
+    res.send(updatedComponents)
+    io.emit('update-components', updatedComponents)
+  })
 })
 
 
