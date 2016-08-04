@@ -14,7 +14,7 @@ export default class Update extends Component {
         'News'
       ],
       components: [],
-      current: true
+      current: false
     }
 
     this.fetchComponents()
@@ -58,8 +58,6 @@ export default class Update extends Component {
         })
       })
     }
-
-    this.sendUpdate()
   }
 
   sendUpdate() {
@@ -75,6 +73,7 @@ export default class Update extends Component {
         components: this.state.components
       })
     })
+    .then((res) => res.json())
     .then((res) => console.log('Response', res))
     .catch((error) => console.error(error))
   }
@@ -92,7 +91,6 @@ export default class Update extends Component {
   }
 
   render() {
-    console.log('render', this.state.components)
     if (this.state.current === false) {
       return (
         <View>
@@ -100,6 +98,8 @@ export default class Update extends Component {
         </View>
       )
     }
+
+    this.sendUpdate()
 
     return (
       <View>

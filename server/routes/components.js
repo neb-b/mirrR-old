@@ -7,9 +7,9 @@ const path = require('path')
 
 const filePath = '../data/list.json'
 const file = path.join(__dirname, filePath)
-let currentComponents = require(filePath)
 
 router.get('/', function(req, res, next) {
+  let currentComponents = require(filePath)
   console.log('current', currentComponents)
   res.send({
     components: currentComponents || ['Google']
