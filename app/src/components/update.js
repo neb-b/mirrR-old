@@ -14,7 +14,7 @@ export default class Update extends Component {
         'News'
       ],
       components: [],
-      current: false
+      current: true
     }
 
     this.fetchComponents()
@@ -22,21 +22,26 @@ export default class Update extends Component {
 
   fetchComponents() {
     console.log('fetch')
-    const url = 'http://192.168.1.11:5000/components'
+    const url = 'http://192.168.1.13:5000/components'
     return fetch(url, {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
     })
       .then((response) => response.json())
-      .then((res) => {
-        if (res.components) {
+      .then((response) => {
+        if (response.components) {
+          console.log('res', response)
           return this.setState({
-            components: res.components,
+            components: response.components,
             current: true
           })
         }
       })
       .catch((error) => {
-        console.error('error', error)
+        if (error) console.error('error', error)
       })
   }
 
@@ -58,7 +63,7 @@ export default class Update extends Component {
   }
 
   sendUpdate() {
-    const url = 'http://192.168.1.11:5000/components'
+    const url = 'http://192.168.1.13:5000/components'
     console.log('sending update')
     fetch(url, {
       method: 'PUT',
