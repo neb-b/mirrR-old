@@ -14,7 +14,7 @@ class Twitter extends Component {
 
   componentDidMount() {
     // How often to fetch for t (in minutes)
-    let twitterUpdateInterval = 5
+    let twitterUpdateInterval = 10
     // Convert to milliseconds
     twitterUpdateInterval *= 60000
 

@@ -90,47 +90,37 @@ export default class ComponentsList extends Component {
     .catch((error) => console.error(error))
   }
 
-
-
   componentDidMount(){
-  this.setState({
-    dataSource:this.state.dataSource.cloneWithRows(this.state.ds),
-  })
+    this.setState({
+      dataSource:this.state.dataSource.cloneWithRows(this.state.ds),
+    })
+  }
 
-}
-
-renderRow(component){
-  return (
-    <TouchableHighlight
-      onPress={()=> this.toggleComponent(component)}
-      underlayColor = '#ddd'>
-      <View style={styles.row}>
-        <Text style={{fontSize:18}}>{component}</Text>
-        <Switch
-         onValueChange={(value) => this.toggleComponent(component)}
-         value={this.state.currentComponents.indexOf(component) !== -1}
-         style={styles.switch} />
-      </View>
-    </TouchableHighlight>
-  )
-}
+  renderRow(component){
+    return (
+      <TouchableHighlight
+        onPress={()=> this.toggleComponent(component)}
+        underlayColor = '#ddd'>
+        <View style={styles.row}>
+          <Text style={{fontSize:18}}>{component}</Text>
+          <Switch
+           onValueChange={(value) => this.toggleComponent(component)}
+           value={this.state.currentComponents.indexOf(component) !== -1}
+           style={styles.switch} />
+        </View>
+      </TouchableHighlight>
+    )
+  }
 
 
   render() {
-    console.log('comp', this.state.currentComponents)
+    if (this.state.current === false) {
+      return null
+    }
 
-
-    // if (this.state.current === false) {
-    //   return (
-    //     <View>
-    //       <LoadingComponents />
-    //     </View>
-    //   )
-    // }
     // Terrible place for sendUpdate()
     // Tired of trying to mess with it, I will be back
     this.sendUpdate()
-    // {this.state.available.map(this.renderSwitches.bind(this))}
 
     return (
       <View>
