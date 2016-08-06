@@ -9,6 +9,7 @@
     "react": "15.2.1",
     "react-native": "0.30.0",
     "react-native-button": "^1.6.0",
-    "socket.io": "^1.4.8"
+    "react-native-material-kit": "^0.3.2",
+    "react-tap-event-plugin": "^1.0.0"
   }
 }
