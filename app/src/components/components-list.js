@@ -1,26 +1,35 @@
 import React, { Component } from 'react'
 import {
-  AppRegistry,
+  StyleSheet,
   Text,
   View,
-  Switch
+  Switch,
+  ListView,
+  TouchableHighlight
 } from 'react-native'
 import components from '../data/components'
+import LoadingComponents from './components-loading'
 
 export default class ComponentsList extends Component {
   constructor(props) {
     super(props);
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 != r2
+    });
     this.state = {
-      available: components,
+      ds: components,
+      dataSource: ds,
+      // available: components,
       currentComponents: [],
       current: false
     }
+
 
     this.fetchComponents()
   }
 
   fetchComponents() {
-    const url = 'http://192.168.1.13:5000/components'
+    const url = 'http://192.168.1.12:5000/components'
     return fetch(url, {
       method: 'GET',
       headers: {
@@ -38,12 +47,12 @@ export default class ComponentsList extends Component {
         }
       })
       .catch((error) => {
-        if (error) console.error('error', error)
+        fetchCompnonents()
+        // if (error) console.error('error', error)
       })
   }
 
-  _toggleComponent(toggledComponent) {
-    // console.log('toggled', toggledComponent)
+  toggleComponent(toggledComponent) {
     const index = this.state.currentComponents.indexOf(toggledComponent)
     // console.log('index', index)
     if (index === -1) {
@@ -65,7 +74,7 @@ export default class ComponentsList extends Component {
   }
 
   sendUpdate() {
-    const url = 'http://192.168.1.13:5000/components'
+    const url = 'http://192.168.1.12:5000/components'
     fetch(url, {
       method: 'PUT',
       headers: {
@@ -81,35 +90,76 @@ export default class ComponentsList extends Component {
     .catch((error) => console.error(error))
   }
 
-  renderSwitches(component) {
-    return (
-      <View key={component} className="components-list">
-        <Text>{component}</Text>
+
+
+  componentDidMount(){
+  this.setState({
+    dataSource:this.state.dataSource.cloneWithRows(this.state.ds),
+  })
+
+}
+
+renderRow(component){
+  return (
+    <TouchableHighlight
+      onPress={()=> this.toggleComponent(component)}
+      underlayColor = '#ddd'>
+      <View style={styles.row}>
+        <Text style={{fontSize:18}}>{component}</Text>
         <Switch
-          onValueChange={(value) => this._toggleComponent(component)}
-          style={{marginBottom: 10}}
-          value={this.state.currentComponents.indexOf(component) !== -1} />
+         onValueChange={(value) => this.toggleComponent(component)}
+         value={this.state.currentComponents.indexOf(component) !== -1}
+         style={styles.switch} />
       </View>
-    )
-  }
+    </TouchableHighlight>
+  )
+}
+
 
   render() {
+    console.log('comp', this.state.currentComponents)
+
+
+    // if (this.state.current === false) {
+    //   return (
+    //     <View>
+    //       <LoadingComponents />
+    //     </View>
+    //   )
+    // }
     // Terrible place for sendUpdate()
     // Tired of trying to mess with it, I will be back
     this.sendUpdate()
-
-    if (this.state.current === false) {
-      return (
-        <View>
-          <Text>Loading components...</Text>
-        </View>
-      )
-    }
+    // {this.state.available.map(this.renderSwitches.bind(this))}
 
     return (
       <View>
-        {this.state.available.map(this.renderSwitches.bind(this))}
+        <ListView
+         dataSource = {this.state.dataSource}
+         renderRow = {this.renderRow.bind(this)}>
+       </ListView>
       </View>
     );
   }
 }
+
+
+var styles = StyleSheet.create({
+  row: {
+    flex:1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 18,
+    borderBottomWidth: 1,
+    borderColor: '#d7d7d7',
+  },
+  selectionText: {
+    fontSize: 15,
+    paddingTop: 3,
+    color: '#b5b5b5',
+    textAlign: 'right'
+  },
+  switchContainer: {
+    alignSelf: 'flex-end'
+  }
+});
