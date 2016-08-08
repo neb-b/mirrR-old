@@ -37,15 +37,16 @@ class App extends Component {
   }
 
   updateMirrorComponents(components) {
-    fetch(URL, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ components })
-    })
-      .catch((error) => console.log(error))
+    console.log('componnets', components)
+    // fetch(URL, {
+    //   method: 'PUT',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(components)
+    // })
+    //   .catch((error) => console.log(error))
   }
 
   render() {

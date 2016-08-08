@@ -22,9 +22,9 @@ class MirrorComponents extends Component {
   }
 
   renderRow(comp) {
-    console.log('render', comp)
     return (
       <TouchableHighlight
+        key={comp}
         onClick={this.props.toggleComponent(comp)}>
         <View key={comp} style={mirrorCompStyles.row}>
           <Text style={mirrorCompStyles.text}>{comp}</Text>
@@ -37,7 +37,7 @@ class MirrorComponents extends Component {
   }
 
   render() {
-    console.log('props', this.props)
+    // console.log('props', this.props)
     const components = this.props.current
     if (!components.length) return <Loading text="Loading items" />
 
