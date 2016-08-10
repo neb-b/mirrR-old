@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import MirrorComponents from './components/mirror_components'
 
-const URL = 'http://192.168.1.14:5000/components'
+const URL = 'http://192.168.1.12:5000/components'
 
 class App extends Component {
   constructor() {
@@ -33,11 +33,12 @@ class App extends Component {
           currentMirrorComponents: response.components
         })
       })
-      .catch((error) => console.log(error))
+      .catch((error) => console.error(error))
   }
 
   updateMirrorComponents(components) {
-    console.log('componnets', components)
+    console.log('components', components)
+    // console.log('update mirror', components)
     // fetch(URL, {
     //   method: 'PUT',
     //   headers: {
@@ -54,7 +55,7 @@ class App extends Component {
       <View>
         <MirrorComponents
           current={this.state.currentMirrorComponents}
-          toggleComponent={this.updateMirrorComponents}/>
+          updateMirror={this.updateMirrorComponents}/>
       </View>
     )
   }

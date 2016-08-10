@@ -18,12 +18,10 @@ router.put('/', function(req, res) {
   const io = req.io
   const newComponents = req.body.components
   console.log('newComponents', newComponents)
-  const newObj = {
-    components: newComponents
-  }
-  fs.writeFile(file, JSON.stringify(newObj), function() {
-    res.send(newObj)
-    io.emit('update-components', newObj)
+
+  fs.writeFile(file, JSON.stringify(newComponents), function() {
+    res.send(newComponents)
+    io.emit('update-components', newComponents)
   })
 })
 
