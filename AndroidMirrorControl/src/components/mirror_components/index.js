@@ -53,7 +53,7 @@ class MirrorComponents extends Component {
 
   render() {
     // console.log('props', this.props)
-    const components = this.props.current
+    const components = this.props.components
     if (!components.length) return <Loading text="Loading items" />
     console.log('props', this.props)
     return (

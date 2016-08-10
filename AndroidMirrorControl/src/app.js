@@ -6,14 +6,14 @@ import {
 } from 'react-native';
 import MirrorComponents from './components/mirror_components'
 
-const URL = 'http://192.168.1.12:5000/components'
+const URL = 'http://192.168.1.14:5000/components'
 
 class App extends Component {
   constructor() {
     super()
 
     this.state = {
-      currentMirrorComponents: []
+      mirrorComponents: []
     }
   }
 
@@ -30,8 +30,9 @@ class App extends Component {
       })
       .then((response) => {
         this.setState({
-          currentMirrorComponents: response.components
+          mirrorComponents: response.components
         })
+        console.log(response)
       })
       .catch((error) => console.error(error))
   }
@@ -54,8 +55,7 @@ class App extends Component {
     return (
       <View>
         <MirrorComponents
-          current={this.state.currentMirrorComponents}
-          updateMirror={this.updateMirrorComponents}/>
+          components={this.state.mirrorComponents}/>
       </View>
     )
   }

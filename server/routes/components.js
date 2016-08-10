@@ -8,20 +8,21 @@ const path = require('path')
 const filePath = '../data/list.json'
 const file = path.join(__dirname, filePath)
 
+let mirrorComponents = require(filePath)
+
 router.get('/', function(req, res, next) {
-  let currentComponents = require(filePath)
-  console.log('current', currentComponents)
-  res.send(currentComponents)
+  console.log('current', mirrorComponents)
+  res.send(mirrorComponents)
 })
 
 router.put('/', function(req, res) {
   const io = req.io
-  const newComponents = req.body.components
-  console.log('newComponents', newComponents)
+  mirrorComponents = req.body.components
+  console.log('newComponents', mirrorComponents)
 
-  fs.writeFile(file, JSON.stringify(newComponents), function() {
-    res.send(newComponents)
-    io.emit('update-components', newComponents)
+  fs.writeFile(file, JSON.stringify(mirrorComponents), function() {
+    res.send(mirrorComponents)
+    io.emit('update-components', mirrorComponents)
   })
 })
 
