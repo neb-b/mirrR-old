@@ -6,14 +6,14 @@ import {
 } from 'react-native';
 import MirrorComponents from './components/mirror_components'
 
-const URL = 'http://192.168.1.11:5000/components'
+const URL = 'http://192.168.1.24:5000/components'
 
 class App extends Component {
   constructor() {
     super()
 
     this.state = {
-      mirrorComponents: []
+      mirrorComponents: [],
     }
   }
 
@@ -29,7 +29,6 @@ class App extends Component {
         return response.json()
       })
       .then((compsFromServer) => {
-        console.log('com', compsFromServer)
         this.setState({
           mirrorComponents: compsFromServer
         })
@@ -41,9 +40,7 @@ class App extends Component {
     this.setState({
       mirrorComponents: this.state.mirrorComponents.map((component) => {
         if (component.name === toggledComp.name) {
-          console.log('toggled', component)
           const newC = Object.assign({}, component, {active: !component.active})
-          console.log('newC', newC)
           return newC
         }
         return component
@@ -51,7 +48,7 @@ class App extends Component {
     })
   }
 
-  componentWillUpdate(state) {
+  sendUpdate() {
     fetch(URL, {
       method: 'PUT',
       headers: {
@@ -70,7 +67,8 @@ class App extends Component {
   }
 
   render() {
-    console.log('state', this.state)
+    if (this.state.mirrorComponents.length) this.sendUpdate()
+
     return (
       <View>
         <MirrorComponents

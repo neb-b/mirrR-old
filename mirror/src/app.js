@@ -40,8 +40,8 @@ class App extends Component {
     const url = 'http://localhost:5000'
     const socket = io(url)
 
-    socket.on('update-components', (data) => {
-      this.setState({ currentComponents: data.components })
+    socket.on('update-components', (currentComponents) => {
+      this.setState({ currentComponents })
     })
   }
 
@@ -63,7 +63,6 @@ class App extends Component {
 
   // Render loads components from props first
   render() {
-    console.log('state', this.state.currentComponents)
     const components = this.state.currentComponents
     if (!components) return <Loader component="app" />
     return (
