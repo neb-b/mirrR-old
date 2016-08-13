@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import MirrorComponents from './components/mirror_components'
 
-const URL = 'http://192.168.1.24:5000/components'
+const URL = 'http://192.168.1.11:5000/components'
 
 class App extends Component {
   constructor() {
@@ -52,20 +52,21 @@ class App extends Component {
   }
 
   componentWillUpdate(state) {
-    // fetch(URL, {
-    //   method: 'PUT',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     components: this.state.components
-    //   })
-    // })
-    // .then((res) => {
-    //   console.log('res', res)
-    // })
-    // .catch((err) => console.error(err))
+    fetch(URL, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        components: this.state.mirrorComponents
+      })
+    })
+    .then((res) => res.json())
+    .then((res) => {
+      console.log('res', res)
+    })
+    .catch((err) => console.error(err))
   }
 
   render() {

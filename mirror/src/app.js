@@ -41,11 +41,15 @@ class App extends Component {
     const socket = io(url)
 
     socket.on('update-components', (data) => {
-      console.log('data', data)
       this.setState({ currentComponents: data.components })
     })
   }
 
+  componentDidMount() {
+    this.setState({
+      currentComponents: data.components
+    })
+  }
 
   // Function that takes the name of a component and returns the actual component
   // Creates NewComp from availableComponents
@@ -59,11 +63,11 @@ class App extends Component {
 
   // Render loads components from props first
   render() {
-    const components = this.props.components
+    const components = this.state.currentComponents
     if (!components) return <Loader component="app" />
     return (
       <div>
-        {components ? components.data.map(this.renderComponents) : this.state.currentComponents(this.renderComponents)}
+        {this.state.currentComponents(this.renderComponents)}
       </div>
     )
   }
