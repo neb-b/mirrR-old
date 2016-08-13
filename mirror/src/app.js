@@ -47,7 +47,7 @@ class App extends Component {
 
   componentDidMount() {
     this.setState({
-      currentComponents: data.components
+      currentComponents: this.props.components
     })
   }
 
