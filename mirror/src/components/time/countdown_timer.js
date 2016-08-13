@@ -40,12 +40,12 @@ export default class CountdownTimer extends Component {
     //   annyang.start({continuous: false})
     // }
 
-    const url = 'http://localhost:5000'
-    var socket = io(url)
-
-    socket.on('start-timer', (data) => {
-      this.newTimer(data.minutes, data.seconds)
-    })
+    // const url = 'http://localhost:5000'
+    // var socket = io(url)
+    //
+    // socket.on('start-timer', (data) => {
+    //   this.newTimer(data.minutes, data.seconds)
+    // })
   }
 
   newTimer(minutes, seconds) {

@@ -45,9 +45,9 @@ class App extends Component {
     })
   }
 
-  componentDidMount() {
+  componentWillReceiveProps(response) {
     this.setState({
-      currentComponents: this.props.components
+      currentComponents: response.components.data
     })
   }
 
@@ -63,11 +63,12 @@ class App extends Component {
 
   // Render loads components from props first
   render() {
+    console.log('state', this.state.currentComponents)
     const components = this.state.currentComponents
     if (!components) return <Loader component="app" />
     return (
       <div>
-        {this.state.currentComponents(this.renderComponents)}
+        {this.state.currentComponents.map(this.renderComponents)}
       </div>
     )
   }
