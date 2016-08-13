@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import MirrorComponents from './components/mirror_components'
 
-const URL = 'http://192.168.1.14:5000/components'
+const URL = 'http://192.168.1.24:5000/components'
 
 class App extends Component {
   constructor() {
@@ -23,39 +23,58 @@ class App extends Component {
 
   fetchMirrorComponents() {
     fetch(URL)
-      .then((response) => {
+    .then((response) => {
         // for chrome bug
         setTimeout(() => null, 0)
         return response.json()
       })
-      .then((response) => {
+      .then((compsFromServer) => {
+        console.log('com', compsFromServer)
         this.setState({
-          mirrorComponents: response.components
+          mirrorComponents: compsFromServer
         })
-        console.log(response)
       })
       .catch((error) => console.error(error))
   }
 
-  updateMirrorComponents(components) {
-    console.log('components', components)
-    // console.log('update mirror', components)
+  toggleComponent(toggledComp) {
+    this.setState({
+      mirrorComponents: this.state.mirrorComponents.map((component) => {
+        if (component.name === toggledComp.name) {
+          console.log('toggled', component)
+          const newC = Object.assign({}, component, {active: !component.active})
+          console.log('newC', newC)
+          return newC
+        }
+        return component
+      })
+    })
+  }
+
+  componentWillUpdate(state) {
     // fetch(URL, {
     //   method: 'PUT',
     //   headers: {
     //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
+    //     'Content-Type': 'application/json'
     //   },
-    //   body: JSON.stringify(components)
+    //   body: JSON.stringify({
+    //     components: this.state.components
+    //   })
     // })
-    //   .catch((error) => console.log(error))
+    // .then((res) => {
+    //   console.log('res', res)
+    // })
+    // .catch((err) => console.error(err))
   }
 
   render() {
+    console.log('state', this.state)
     return (
       <View>
         <MirrorComponents
-          components={this.state.mirrorComponents}/>
+          components={this.state.mirrorComponents}
+          toggleComponent={this.toggleComponent.bind(this)}/>
       </View>
     )
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchComponents } from './actions/action_components'
 import Loader from './components/loader/loader'
-import io from 'socket.io-client';
+import io from 'socket.io-client'
 
 // Import mirror components
 import Greeting from './components/greeting/greeting' // Small greeting
@@ -36,47 +36,34 @@ class App extends Component {
     this.state = { components: null }
     this.props.fetchComponents()
     this.renderComponents = this.renderComponents.bind(this)
-    this.createComponent = this.createComponent.bind(this)
 
     const url = 'http://localhost:5000'
     const socket = io(url)
 
     socket.on('update-components', (data) => {
-      this.setState({ components: data.components })
+      console.log('data', data)
+      this.setState({ currentComponents: data.components })
     })
   }
 
 
   // Function that takes the name of a component and returns the actual component
   // Creates NewComp from availableComponents
-  createComponent(componentName) {
-    const NewComp = availableComponents[componentName]
-    return <NewComp key={componentName}/>
-  }
-
-  // If no components, return a message
-  // If one component call createComponent
-  // If several components, map over and call createComponent for each string
-  renderComponents(components) {
-    if (!components) return <h1>No components loaded</h1>
-
-    // If only one component is loaded from the server it is sent as a string
-    // Shouldn't have to do this once request comes from a phone
-    if (typeof components === 'string') {
-      return this.createComponent(components)
+  renderComponents(component) {
+    if (component.active) {
+      const NewComp = availableComponents[component.name]
+      return <NewComp key={component.name}/>
     }
-
-    return components.map(this.createComponent)
+    return null
   }
 
   // Render loads components from props first
   render() {
     const components = this.props.components
     if (!components) return <Loader component="app" />
-
     return (
       <div>
-        {this.state.components ? this.renderComponents(this.state.components) : this.renderComponents(components.data.components)}
+        {components ? components.data.map(this.renderComponents) : this.state.currentComponents(this.renderComponents)}
       </div>
     )
   }
