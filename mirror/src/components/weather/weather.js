@@ -8,17 +8,22 @@ import getWeatherIcon from './weather_icon'
 class Weather extends Component {
   constructor(props) {
     super(props)
+  }
 
+
+  componentDidMount() {
     // How often to fetch for weather (in minutes)
     let weatherUpdateInterval = 5
     // Convert to milliseconds
     weatherUpdateInterval *= 60000
 
-    // Keeping fetchWeather setInterval inside of componentWillMount because of geo callback
-    navigator.geolocation.getCurrentPosition(({ coords }) => {
-      this.props.fetchWeather(coords)
-      setInterval(() => {this.props.fetchWeather(coords)}, weatherUpdateInterval)
-    })
+    const coords = {
+      latitude: 37.37,
+      longitude: 122.04
+    }
+
+    this.props.fetchWeather(coords)
+    setInterval(() => {this.props.fetchWeather(coords)}, weatherUpdateInterval)
   }
 
   render() {
@@ -40,6 +45,7 @@ class Weather extends Component {
 }
 
 function mapStateToProps({ weather }) {
+
   return { weather }
 }
 
