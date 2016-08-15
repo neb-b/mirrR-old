@@ -22,7 +22,7 @@ export default class Clock extends Component {
 
   // If component unmounts, clearInterval
   componentWillUnmount() {
-    if (this.timeUpdate) clearInterval(timeUpdate)
+    if (this.timeUpdate) clearInterval(this.timeUpdate)
   }
 
   getTime() {
