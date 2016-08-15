@@ -10,12 +10,9 @@ class Weather extends Component {
     super(props)
   }
 
-
   componentDidMount() {
-    // How often to fetch for weather (in minutes)
-    let weatherUpdateInterval = 5
-    // Convert to milliseconds
-    weatherUpdateInterval *= 60000
+    const updateTimeInMinutes = 5
+    weatherUpdateInterval = 60000 * updateTimeInMinutes
 
     const coords = {
       latitude: 37.37,
@@ -27,9 +24,7 @@ class Weather extends Component {
   }
 
   render() {
-    // If weather data, return weather information, else return "Getting weather..."
     const weather = this.props.weather.data
-    console.log('weather', weather)
     if (!weather) return <Loader component="weather" />
 
     return (
