@@ -4,7 +4,7 @@ import {
   Text,
   View,
   ToolbarAndroid,
-} from 'react-native';
+} from 'react-native'
 import MirrorComponents from './components/mirror_components'
 
 const URL = 'http://192.168.1.24:5000/components'
