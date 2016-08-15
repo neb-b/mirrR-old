@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
-// import io from 'socket.io-client'
-// import CountdownTimer from './countdown_timer'
-
-let timeUpdate = null
-let timerUpdate = null
 
 export default class Clock extends Component {
   constructor() {
     super()
+
+    this.timeUpdate = null
 
     // Initialize state with current time
     this.state = {
@@ -18,19 +15,17 @@ export default class Clock extends Component {
 
   // After component mounts, call setInterval to update time every second
   componentDidMount() {
-    let timer = false
-
-    timeUpdate = setInterval(() => {
-      this.setState(this.getTime(timer))
+    this.timeUpdate = setInterval(() => {
+      this.setState(this.getTime())
     }, 1000)
   }
 
   // If component unmounts, clearInterval
   componentWillUnmount() {
-    if (timeUpdate) clearInterval(timeUpdate)
+    if (this.timeUpdate) clearInterval(timeUpdate)
   }
 
-  getTime(timer) {
+  getTime() {
     return {
       time: moment().format('h:mm a'),
       date: moment().format('ddd MMMM Do')

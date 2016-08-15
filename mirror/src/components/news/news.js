@@ -7,16 +7,19 @@ export default class News extends Component {
   constructor(props) {
     super(props)
     this.props.fetchNews()
+
+    this.newsUpdate = null
   }
 
   componentDidMount() {
-    // How often to fetch for news (in minutes)
-    let newsUpdateInterval = 15
-    // Convert to milliseconds
-    newsUpdateInterval *= 60000
+    const updateTimeInMinutes = 15
+    const newsUpdateInterval = 60000 * updateTimeInMinutes
 
-    // Fetch news, then setInterval for continuous update
-    setInterval(this.props.fetchNews, newsUpdateInterval)
+    this.newsUpdate = setInterval(this.props.fetchNews, newsUpdateInterval)
+  }
+
+  componentWillUnmount() {
+    if (this.newsUpdate) clearInterval(this.newsUpdate)
   }
 
   renderNews(story) {

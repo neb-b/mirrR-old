@@ -3,30 +3,35 @@ import { connect } from 'react-redux'
 import { fetchTrends } from '../../actions/action_google'
 import Loader from '../loader/loader'
 
+
 export default class Google extends Component {
   constructor(props) {
     super(props)
-    this.props.fetchTrends()
+
+    this.googleUpdate = null
   }
 
   componentDidMount() {
-    const updateTimeInHours = 6
-    const updateInterval = updateTimeInHours * 3600000
+    this.props.fetchTrends()
 
-    setInterval(this.props.fetchTrends, updateInterval)
+    const updateTimeInHours = 3
+    const updateInterval = 3600000 * updateTimeInHours
+
+    this.googleUpdate = setInterval(this.props.fetchTrends, updateInterval)
   }
 
-  renderTrends(trend) {
-    if (!trend.data) return
+  componentWillUnmount() {
+    if (this.googleUpdate) clearInterval(this.googleUpdate)
+  }
 
-    const googleTrend = trend.data.trend
-    const color = googleTrend.hotnessColor // Color google gives to trends based on number of searches, Red is hottest
-    const style = { color }
+  renderTrends(trend, ) {
+    const { title, hotnessColor } = trend.data.trend
+    const style = { color: hotnessColor }
 
     return (
       <li key={trend.date}>
         <span className="trend_date">{trend.longFormattedDate}</span>
-        <span className="trend_text" style={style}>{googleTrend.title}</span>
+        <span className="trend_text" style={style}>{title}</span>
       </li>
     )
   }
@@ -36,9 +41,14 @@ export default class Google extends Component {
 
     const trends = this.props.trends.data.weeksList[4].daysList
 
+
     return (
       <ul className="google_trends">
-        {trends.map(this.renderTrends)}
+        {
+          trends
+            .filter((trend) => trend.data)
+            .map(this.renderTrends)
+        }
       </ul>
     )
   }

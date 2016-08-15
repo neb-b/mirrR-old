@@ -9,6 +9,8 @@ class Twitter extends Component {
     super(props)
     this.props.fetchTweets()
 
+    this.twitterUpdate = null
+
     this.checkRetweeted = this.checkRetweeted.bind(this)
   }
 
@@ -18,7 +20,11 @@ class Twitter extends Component {
     // Convert to milliseconds
     twitterUpdateInterval *= 60000
 
-    setInterval(this.props.fetchTweets, twitterUpdateInterval)
+    this.twitterUpdate = setInterval(this.props.fetchTweets, twitterUpdateInterval)
+  }
+
+  componentWillUnmount() {
+    if (this.twitterUpdate) clearInterval(this.twitterUpdate)
   }
 
   checkRetweeted(tweet) {

@@ -19,7 +19,7 @@ class Weather extends Component {
 
     const coords = {
       latitude: 37.37,
-      longitude: 122.04
+      longitude: -122.04
     }
 
     this.props.fetchWeather(coords)
