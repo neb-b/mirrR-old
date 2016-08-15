@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  ToolbarAndroid,
 } from 'react-native';
 import MirrorComponents from './components/mirror_components'
 
@@ -71,6 +72,10 @@ class App extends Component {
 
     return (
       <View>
+        <ToolbarAndroid
+          style={styles.toolbar}>
+          <View><Text style={styles.title}>React Native Mirror</Text></View>
+        </ToolbarAndroid>
         <MirrorComponents
           components={this.state.mirrorComponents}
           toggleComponent={this.toggleComponent.bind(this)}/>
@@ -78,5 +83,16 @@ class App extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  title: {
+    color: 'white',
+    fontSize: 20
+  },
+  toolbar: {
+    height: 60,
+    backgroundColor: '#f4583d',
+  }
+})
 
 export default App

@@ -12,7 +12,7 @@ class Weather extends Component {
 
   componentDidMount() {
     const updateTimeInMinutes = 5
-    weatherUpdateInterval = 60000 * updateTimeInMinutes
+    const weatherUpdateInterval = 60000 * updateTimeInMinutes
 
     const coords = {
       latitude: 37.37,

@@ -38,18 +38,21 @@ const renderRow = (comp, toggleComponent) => {
 
 
 const mirrorCompStyles = StyleSheet.create({
+
   row: {
-    flex: 1,
+    flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 18,
+    padding: 20,
     borderBottomWidth: 1,
     borderColor: '#d7d7d7',
+
   },
   text: {
-    fontSize: 18,
+    padding: 10,
+    fontSize: 18
   },
   switch: {
-
+    padding: 10
   }
 })
 

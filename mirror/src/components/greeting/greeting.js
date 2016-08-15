@@ -16,7 +16,7 @@ export default class Greeting extends Component {
     const updateInterval = 60000 * updateTimeInMinutes
 
     this.greetingUpdate = setInterval(() => {
-      this.setState(this.trackTime())
+      this.setState(this.getTime())
     }, updateInterval)
   }
 
