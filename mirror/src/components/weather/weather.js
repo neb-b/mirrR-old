@@ -36,7 +36,7 @@ class Weather extends Component {
       <div className="weather" id="weather">
         <div className="weather_current">
           <h1 className="weather_current_temp">{weather.currently.apparentTemperature.toFixed(0)}°</h1>
-          {getWeatherIcon(weather.minutely.icon)}
+          {getWeatherIcon(weather.currently.icon)}
         </div>
         <p className="weather_summary">{weather.hourly.summary}</p>
       </div>
