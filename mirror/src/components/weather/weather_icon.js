@@ -4,42 +4,42 @@ import React from 'react'
 export default (currentSky) => {
   // Darksky icons (currentSky)
   // clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night
-  let path
+  let icon
 
   switch (currentSky) {
     case 'clear-day':
-      path='images/sun-icon.png'
+      icon='clear-day.png'
       break
-    case 'clear-night':
-      path='images/sun-icon.png'
+    // case 'clear-night':
+    //   icon='sun-icon.png'
       break
     case 'rain':
-      path='images/sun-icon.png'
+      icon='rain.png'
       break
-    case 'snow':
-      path='images/sun-icon.png'
-      break
-    case 'sleet':
-      path='images/sun-icon.png'
-      break
-    case 'wind':
-      path='images/sun-icon.png'
-      break
-    case 'fog':
-      path='images/sun-icon.png'
-      break
+    // case 'snow':
+    //   icon='sun-icon.png'
+    //   break
+    // case 'sleet':
+    //   icon='sun-icon.png'
+    //   break
+    // case 'wind':
+    //   icon='sun-icon.png'
+    //   break
+    // case 'fog':
+    //   icon='sun-icon.png'
+    //   break
     case 'cloudy':
-      path='images/sun-icon.png'
+      icon='cloudy.png'
       break
-    case 'partly-cloudy-day':
-      path='images/sun-icon.png'
-      break
-    case 'partly-cloudy-night':
-      path='images/sun-icon.png'
-      break
+    // case 'partly-cloudy-day':
+    //   icon='sun-icon.png'
+    //   break
+    // case 'partly-cloudy-night':
+    //   icon='sun-icon.png'
+    //   break
 
-    default: path = 'images/sun-icon.png'
+    default: icon = 'clear-day.png'
   }
 
-  return <img className="weather_current_icon" src={path} />
+  return <img className="weather_current_icon" src={`images/${icon}`} />
 }
