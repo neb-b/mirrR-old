@@ -11,7 +11,7 @@ class Weather extends Component {
   }
 
   componentDidMount() {
-    const updateTimeInMinutes = 5
+    const updateTimeInMinutes =  5
     const weatherUpdateInterval = 60000 * updateTimeInMinutes
 
     const coords = {
