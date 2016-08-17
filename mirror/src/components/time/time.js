@@ -15,7 +15,7 @@ export default class Clock extends Component {
 
   // After component mounts, call setInterval to update time every second
   componentDidMount() {
-    this.timeUpdate = setInterval(this.updateTime, 1000)
+    this.timeUpdate = setInterval(this.updateTime.bind(this), 1000)
   }
 
   // If component unmounts, clearInterval
