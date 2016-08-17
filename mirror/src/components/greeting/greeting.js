@@ -6,13 +6,11 @@ export default class Greeting extends Component {
 
     this.greetingUpdate = null
 
-    this.state = {
-      time: this.getTime()
-    }
+    this.state = this.getTime()
   }
 
   componentDidMount() {
-    const updateTimeInMinutes = 1
+    const updateTimeInMinutes = 5
     const updateInterval = 60000 * updateTimeInMinutes
 
     this.greetingUpdate = setInterval(() => {
@@ -29,11 +27,11 @@ export default class Greeting extends Component {
     const numTime = Number(time[0])
 
     if (time[1] === 'am') {
-      if (numTime > 5) return 'morning'
-      return 'night'
+      if (numTime > 5) return {time: 'morning'}
+      return {time: 'night'}
     } else {
-      if (numTime < 5 || numTime === 12) return 'afternoon'
-      return 'evening'
+      if (numTime < 5 || numTime === 12) return {time: 'afternoon'}
+      return {time: 'evening'}
     }
   }
 
