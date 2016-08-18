@@ -6,8 +6,7 @@ import {
   ToolbarAndroid,
 } from 'react-native'
 import MirrorComponents from './components/mirror_components'
-
-const URL = 'http://192.168.1.24:5000/components'
+import AddIpAddress from './components/ip'
 
 class App extends Component {
   constructor() {
@@ -15,15 +14,18 @@ class App extends Component {
 
     this.state = {
       mirrorComponents: [],
+      ip: ''
     }
+    // check for ip saved to local storage
   }
 
-  componentDidMount() {
-    this.fetchMirrorComponents()
+  saveIPAddress(ip) {
+    console.log('saving')
+    this.setState({ ip })
   }
 
   fetchMirrorComponents() {
-    fetch(URL)
+    fetch(`http://${this.state.ip}:5000/components`)
     .then((response) => {
         // for chrome bug
         setTimeout(() => null, 0)
@@ -50,7 +52,7 @@ class App extends Component {
   }
 
   sendUpdate() {
-    fetch(URL, {
+    fetch(`http://${this.state.ip}:5000/components`, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -68,7 +70,13 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.mirrorComponents.length) this.sendUpdate()
+    console.log('render', this.state)
+
+    if (!this.state.mirrorComponents.length && this.state.ip) {
+      this.fetchMirrorComponents()
+    }
+
+    if (this.state.mirrorComponents.length && this.state.ip) this.sendUpdate()
 
     return (
       <View>
@@ -76,9 +84,13 @@ class App extends Component {
           style={styles.toolbar}>
           <View><Text style={styles.title}>React Native Mirror</Text></View>
         </ToolbarAndroid>
-        <MirrorComponents
-          components={this.state.mirrorComponents}
-          toggleComponent={this.toggleComponent.bind(this)}/>
+        {
+          this.state.ip
+          ? <MirrorComponents
+              components={this.state.mirrorComponents}
+              toggleComponent={this.toggleComponent.bind(this)}/>
+            : <AddIpAddress save={this.saveIPAddress.bind(this)}/>
+        }
       </View>
     )
   }
