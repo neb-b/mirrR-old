@@ -10,14 +10,14 @@ export default (currentSky) => {
     case 'clear-day':
       icon='clear-day.png'
       break
-    // case 'clear-night':
-    //   icon='sun-icon.png'
+    case 'clear-night':
+      icon='clear-night.png'
       break
     case 'rain':
       icon='rain.png'
       break
     // case 'snow':
-    //   icon='sun-icon.png'
+    //   icon='snow.png'
     //   break
     // case 'sleet':
     //   icon='sun-icon.png'
@@ -31,9 +31,9 @@ export default (currentSky) => {
     case 'cloudy':
       icon='cloudy.png'
       break
-    // case 'partly-cloudy-day':
-    //   icon='sun-icon.png'
-    //   break
+    case 'partly-cloudy-day':
+      icon='partly-cloudy-day.png'
+      break
     // case 'partly-cloudy-night':
     //   icon='sun-icon.png'
     //   break
