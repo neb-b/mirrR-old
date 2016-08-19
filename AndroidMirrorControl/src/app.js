@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  AsyncStorage,
   StyleSheet,
   Text,
   View,
@@ -17,10 +18,20 @@ class App extends Component {
       ip: ''
     }
     // check for ip saved to local storage
+    this.readIPAddress()
+  }
+
+  readIPAddress() {
+    try {
+      AsyncStorage.getItem('mirrorIp')
+        .then((ip) => this.setState({ip}))
+    } catch(err) {
+      console.log('err', err)
+    }
   }
 
   saveIPAddress(ip) {
-    console.log('saving')
+    AsyncStorage.setItem("mirrorIp", ip);
     this.setState({ ip })
   }
 
@@ -63,15 +74,10 @@ class App extends Component {
       })
     })
     .then((res) => res.json())
-    .then((res) => {
-      console.log('res', res)
-    })
     .catch((err) => console.error(err))
   }
 
   render() {
-    console.log('render', this.state)
-
     if (!this.state.mirrorComponents.length && this.state.ip) {
       this.fetchMirrorComponents()
     }
@@ -89,7 +95,7 @@ class App extends Component {
           ? <MirrorComponents
               components={this.state.mirrorComponents}
               toggleComponent={this.toggleComponent.bind(this)}/>
-            : <AddIpAddress save={this.saveIPAddress.bind(this)}/>
+          : <AddIpAddress save={this.saveIPAddress.bind(this)}/>
         }
       </View>
     )
