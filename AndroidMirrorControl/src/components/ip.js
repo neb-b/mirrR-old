@@ -30,6 +30,13 @@ class AddIpAddress extends Component {
   }
 
   render() {
+    if (!this.props.connection) {
+      return (
+        <View>
+          <Text style={IpStyles.text}>You need to be connected to wifi</Text>
+        </View>
+      )
+    }
     return (
       <View style={IpStyles.container}>
         <Text style={IpStyles.text}>Enter your IP address</Text>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  NetInfo,
   AsyncStorage,
   StyleSheet,
   Text,
@@ -15,10 +16,28 @@ class App extends Component {
 
     this.state = {
       mirrorComponents: [],
-      ip: ''
+      ip: '',
+      connection: null
     }
-    // check for ip saved to local storage
+
     this.readIPAddress()
+    this.handleNetworkChange = this.handleNetworkChange.bind(this)
+  }
+
+  componentDidMount() {
+    NetInfo.fetch().done(this.handleNetworkChange)
+    NetInfo.addEventListener(
+      'change',
+      this.handleNetworkChange
+    );
+  }
+
+  handleNetworkChange(reach) {
+    if (reach === 'WIFI') {
+      this.setState({connection: true})
+    } else {
+      this.setState({connection: false})
+    }
   }
 
   readIPAddress() {
@@ -78,11 +97,14 @@ class App extends Component {
   }
 
   render() {
-    if (!this.state.mirrorComponents.length && this.state.ip) {
+
+    if (!this.state.mirrorComponents.length && this.state.ip && this.state.connection) {
       this.fetchMirrorComponents()
     }
 
-    if (this.state.mirrorComponents.length && this.state.ip) this.sendUpdate()
+    if (this.state.mirrorComponents.length && this.state.ip && this.state.connection) {
+      this.sendUpdate()
+    }
 
     return (
       <View>
@@ -91,11 +113,11 @@ class App extends Component {
           <View><Text style={styles.title}>React Native Mirror</Text></View>
         </ToolbarAndroid>
         {
-          this.state.ip
+          this.state.ip && this.state.connection
           ? <MirrorComponents
               components={this.state.mirrorComponents}
               toggleComponent={this.toggleComponent.bind(this)}/>
-          : <AddIpAddress save={this.saveIPAddress.bind(this)}/>
+            : <AddIpAddress save={this.saveIPAddress.bind(this)} connection={this.state.connection}/>
         }
       </View>
     )
