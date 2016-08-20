@@ -3,12 +3,16 @@ import {
   NetInfo,
   AsyncStorage,
   StyleSheet,
+  DrawerLayoutAndroid,
+  Navigator,
+  Menu,
   Text,
   View,
   ToolbarAndroid,
 } from 'react-native'
 import MirrorComponents from './components/mirror_components'
 import AddIpAddress from './components/ip'
+
 
 class App extends Component {
   constructor() {
@@ -29,7 +33,8 @@ class App extends Component {
     NetInfo.addEventListener(
       'change',
       this.handleNetworkChange
-    );
+    )
+
   }
 
   handleNetworkChange(reach) {
@@ -106,6 +111,7 @@ class App extends Component {
       this.sendUpdate()
     }
 
+
     return (
       <View>
         <ToolbarAndroid
@@ -117,7 +123,7 @@ class App extends Component {
           ? <MirrorComponents
               components={this.state.mirrorComponents}
               toggleComponent={this.toggleComponent.bind(this)}/>
-            : <AddIpAddress save={this.saveIPAddress.bind(this)} connection={this.state.connection}/>
+          : <AddIpAddress save={this.saveIPAddress.bind(this)} connection={this.state.connection}/>
         }
       </View>
     )
@@ -132,7 +138,8 @@ const styles = StyleSheet.create({
   toolbar: {
     height: 60,
     backgroundColor: '#f4583d',
-  }
+  },
+
 })
 
 export default App

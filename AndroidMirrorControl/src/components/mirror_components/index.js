@@ -11,6 +11,7 @@ import Loading from '../loading'
 
 const MirrorComponents = ({ components, toggleComponent }) => {
   if (!components.length) return <Loading text="Loading widgets" />
+
   return (
     <View>
       <ScrollView>
@@ -21,9 +22,6 @@ const MirrorComponents = ({ components, toggleComponent }) => {
 }
 
 const renderRow = (comp, toggleComponent) => {
-  // console.log('comp', comp);
-  // console.log('props', props)
-  // console.log('togg', toggleComponent);
   return (
     <View
       key={comp.name}
@@ -38,14 +36,12 @@ const renderRow = (comp, toggleComponent) => {
 
 
 const mirrorCompStyles = StyleSheet.create({
-
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 20,
     borderBottomWidth: 1,
     borderColor: '#d7d7d7',
-
   },
   text: {
     padding: 10,
