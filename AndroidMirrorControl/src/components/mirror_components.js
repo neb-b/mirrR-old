@@ -7,19 +7,7 @@ import {
   TouchableHighlight,
   Switch
 } from 'react-native'
-import Loading from '../loading'
-
-const MirrorComponents = ({ components, toggleComponent }) => {
-  if (!components.length) return <Loading text="Loading widgets" />
-
-  return (
-    <View>
-      <ScrollView>
-        {components.map((comp) => renderRow(comp, toggleComponent))}
-      </ScrollView>
-    </View>
-  )
-}
+import Loading from './loading'
 
 const renderRow = (comp, toggleComponent) => {
   return (
@@ -34,6 +22,17 @@ const renderRow = (comp, toggleComponent) => {
   )
 }
 
+const MirrorComponents = ({ components, toggleComponent }) => {
+  if (!components) return <Loading text="Loading widgets" />
+
+  return (
+    <View>
+    <ScrollView>
+    {components.map((comp) => renderRow(comp, toggleComponent))}
+    </ScrollView>
+    </View>
+  )
+}
 
 const mirrorCompStyles = StyleSheet.create({
   row: {

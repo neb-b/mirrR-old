@@ -2,16 +2,11 @@ import React, { Component } from 'react';
 import {
   NetInfo,
   AsyncStorage,
-  StyleSheet,
-  DrawerLayoutAndroid,
-  Navigator,
-  Menu,
-  Text,
   View,
   ToolbarAndroid,
 } from 'react-native'
-import MirrorComponents from './components/mirror_components'
-import AddIpAddress from './components/ip'
+import NotConnected from './components/not_connected'
+import Layout from './layout'
 
 
 class App extends Component {
@@ -19,22 +14,31 @@ class App extends Component {
     super()
 
     this.state = {
-      mirrorComponents: [],
-      ip: '',
-      connection: null
+      IP: '',
+      connection: null,
+      mirrorComponents: []
     }
 
-    this.readIPAddress()
     this.handleNetworkChange = this.handleNetworkChange.bind(this)
   }
 
   componentDidMount() {
+    this.readIPAddress()
+
     NetInfo.fetch().done(this.handleNetworkChange)
     NetInfo.addEventListener(
       'change',
       this.handleNetworkChange
     )
+  }
 
+  readIPAddress() {
+    try {
+      AsyncStorage.getItem('mirrorIp')
+      .then((IP) => this.setState({IP}))
+    } catch(err) {
+      console.error('err', err)
+    }
   }
 
   handleNetworkChange(reach) {
@@ -45,33 +49,9 @@ class App extends Component {
     }
   }
 
-  readIPAddress() {
-    try {
-      AsyncStorage.getItem('mirrorIp')
-        .then((ip) => this.setState({ip}))
-    } catch(err) {
-      console.log('err', err)
-    }
-  }
-
-  saveIPAddress(ip) {
-    AsyncStorage.setItem("mirrorIp", ip);
-    this.setState({ ip })
-  }
-
-  fetchMirrorComponents() {
-    fetch(`http://${this.state.ip}:5000/components`)
-    .then((response) => {
-        // for chrome bug
-        setTimeout(() => null, 0)
-        return response.json()
-      })
-      .then((compsFromServer) => {
-        this.setState({
-          mirrorComponents: compsFromServer
-        })
-      })
-      .catch((error) => console.error(error))
+  saveIPAddress(IP) {
+    AsyncStorage.setItem("mirrorIp", IP)
+    this.setState({ IP })
   }
 
   toggleComponent(toggledComp) {
@@ -86,8 +66,23 @@ class App extends Component {
     })
   }
 
+  fetchMirrorComponents() {
+    fetch(`http://${this.state.IP}:5000/components`)
+    .then((response) => {
+        // for chrome bug
+        setTimeout(() => null, 0)
+        return response.json()
+      })
+      .then((compsFromServer) => {
+        this.setState({
+          mirrorComponents: compsFromServer
+        })
+      })
+      .catch((error) => console.error(error))
+  }
+
   sendUpdate() {
-    fetch(`http://${this.state.ip}:5000/components`, {
+    fetch(`http://${this.state.IP}:5000/components`, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -102,44 +97,24 @@ class App extends Component {
   }
 
   render() {
-
-    if (!this.state.mirrorComponents.length && this.state.ip && this.state.connection) {
-      this.fetchMirrorComponents()
-    }
-
-    if (this.state.mirrorComponents.length && this.state.ip && this.state.connection) {
-      this.sendUpdate()
-    }
-
-
+    const showView = this.state.connection && this.state.IP
     return (
       <View>
-        <ToolbarAndroid
-          style={styles.toolbar}>
-          <View><Text style={styles.title}>React Native Mirror</Text></View>
-        </ToolbarAndroid>
         {
-          this.state.ip && this.state.connection
-          ? <MirrorComponents
+          showView
+          ? <Layout
               components={this.state.mirrorComponents}
-              toggleComponent={this.toggleComponent.bind(this)}/>
-          : <AddIpAddress save={this.saveIPAddress.bind(this)} connection={this.state.connection}/>
+              fetchMirrorComponents={this.fetchMirrorComponents.bind(this)}
+              sendUpdate={this.sendUpdate.bind(this)}
+              toggleComponent={this.toggleComponent.bind(this)} />
+          : <NotConnected
+              connection={this.state.connection}
+              save={this.saveIPAddress.bind(this)}/>
         }
       </View>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  title: {
-    color: 'white',
-    fontSize: 20
-  },
-  toolbar: {
-    height: 60,
-    backgroundColor: '#f4583d',
-  },
-
-})
 
 export default App

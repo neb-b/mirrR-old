@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   }
 })
 
-class AddIpAddress extends Component {
+class AddIPAddress extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,14 +49,6 @@ class AddIpAddress extends Component {
   }
 
   render() {
-    if (!this.props.connection) {
-      return (
-        <View>
-          <Text style={styles.text}>You need to be connected to wifi</Text>
-        </View>
-      )
-    }
-
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Enter your Raspberry Pi&#39;s IP address</Text>
@@ -83,4 +75,4 @@ class AddIpAddress extends Component {
   }
 }
 
-export default AddIpAddress
+export default AddIPAddress
