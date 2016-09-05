@@ -22,7 +22,7 @@ const loadingStyles = StyleSheet.create({
 const Loading = ({ text }) => {
   return (
     <View style={loadingStyles.container}>
-      <Text style={loadingStyles.text}>{text}</Text>
+      <Text style={loadingStyles.text}>Loading {text}...</Text>
       <ActivityIndicator
         animating={true}
         size="large"

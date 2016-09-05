@@ -11,7 +11,6 @@ import {
   ToolbarAndroid,
 } from 'react-native'
 import MirrorComponents from './components/mirror_components'
-import NotConnected from './components/not_connected'
 
 
 class Layout extends Component {
@@ -24,7 +23,7 @@ class Layout extends Component {
   }
 
   componentWillUpdate() {
-    if (this.props.components.length) {
+    if (this.props.components && this.props.components.length) {
       this.props.sendUpdate()
     }
   }
@@ -34,7 +33,7 @@ class Layout extends Component {
       <View>
         <ToolbarAndroid
           style={styles.toolbar}>
-          <View><Text style={styles.title}>React Native Mirror</Text></View>
+          <View><Text style={styles.title}>Smart Mirror Control</Text></View>
         </ToolbarAndroid>
         <MirrorComponents
           components={this.props.components}

@@ -11,7 +11,6 @@ import Weather from './components/weather/weather'    // Current temperature and
 import News from './components/news/news'             // Top headlines from NYT
 import Twitter from './components/twitter/twitter'    // Current twitter timeline
 import Google from './components/google/google'       // Current Google trends
-// import Calendar from './components/calendar/calendar' // Basic Calendar
 
 const availableComponents = {
   Greeting,
@@ -20,7 +19,6 @@ const availableComponents = {
   News,
   Twitter,
   Google,
-  // Calendar
 }
 
 // Fetch current components to be used from Node server
@@ -54,7 +52,7 @@ class App extends Component {
   renderComponents(component) {
     if (component.active) {
       const NewComp = availableComponents[component.name]
-      return <NewComp key={component.name}/>
+      return <NewComp key={component.name} {...component}/>
     }
     return null
   }

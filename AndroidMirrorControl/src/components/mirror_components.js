@@ -5,17 +5,17 @@ import {
   Text,
   ScrollView,
   TouchableHighlight,
-  Switch
+  Switch,
+  Dimensions
 } from 'react-native'
 import Loading from './loading'
 
+
 const renderRow = (comp, toggleComponent) => {
   return (
-    <View
-      key={comp.name}
-      style={mirrorCompStyles.row}>
-      <Text style={mirrorCompStyles.text}>{comp.name}</Text>
-      <Switch style={mirrorCompStyles.switch}
+    <View key={comp.name} style={styles.row}>
+        <Text style={styles.text}>{comp.name}</Text>
+        <Switch style={styles.switch}
         value={comp.active}
         onChange={() => toggleComponent(comp)}/>
     </View>
@@ -23,23 +23,30 @@ const renderRow = (comp, toggleComponent) => {
 }
 
 const MirrorComponents = ({ components, toggleComponent }) => {
-  if (!components) return <Loading text="Loading widgets" />
+  if (!components) return <Loading text="widgets" />
 
   return (
     <View>
-    <ScrollView>
-    {components.map((comp) => renderRow(comp, toggleComponent))}
-    </ScrollView>
+      <ScrollView style={styles.scrollview}>
+        {components.map((comp) => renderRow(comp, toggleComponent))}
+      </ScrollView>
     </View>
   )
 }
 
-const mirrorCompStyles = StyleSheet.create({
+// TEMP
+// flex: 1 on container not scrolling
+const {height} = Dimensions.get('window');
+
+const styles = StyleSheet.create({
+  scrollview: {
+    height: height - 60
+  },
   row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     padding: 20,
     borderBottomWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     borderColor: '#d7d7d7',
   },
   text: {

@@ -6,11 +6,13 @@ const favicon = require('serve-favicon')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
+const get_ip = require('ipware')().get_ip;
 
 const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 server.listen(process.env.PORT || 5000)
+
 
 // Add headers
 app.use(function (req, res, next) {
@@ -31,6 +33,12 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(function(req, res, next) {
+  var ip_info = get_ip(req);
+  console.log('ip_info', ip_info)
+  // req.ip = ip_info.clientIp
+  next();
+});
 
 // Routes
 app.use('/', require('./routes/index'))

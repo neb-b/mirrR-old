@@ -1,0 +1,30 @@
+[
+  {
+  "name":"Google",
+  "active":true
+  },
+  {
+  "name":"Greeting",
+  "active":true
+  },
+  {
+  "name":"News",
+  "active":true
+  },
+  {
+  "name":"Time",
+  "active":true
+  },
+  {
+  "name":"Twitter",
+  "active":false
+  },
+  {
+  "name":"Weather",
+  "active":true,
+  "location": {
+    "lat": "",
+    "lon": ""
+  }
+  }
+]

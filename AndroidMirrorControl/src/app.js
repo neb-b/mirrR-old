@@ -5,17 +5,20 @@ import {
   View,
   ToolbarAndroid,
 } from 'react-native'
-import NotConnected from './components/not_connected'
+import Loading from './components/loading'
+import Splash from './components/splash'
+import Setup from './components/setup'
 import Layout from './layout'
-
 
 class App extends Component {
   constructor() {
     super()
 
     this.state = {
-      IP: '',
+      mirrorIp: null,
       connection: null,
+      connectionType: null,
+      location: null,
       mirrorComponents: []
     }
 
@@ -24,37 +27,80 @@ class App extends Component {
 
   componentDidMount() {
     this.readIPAddress()
+    this.readLocation()
 
-    NetInfo.fetch().done(this.handleNetworkChange)
+    NetInfo.fetch()
+      .done(this.handleNetworkChange)
     NetInfo.addEventListener(
       'change',
       this.handleNetworkChange
     )
   }
 
+  handleNetworkChange(reach) {
+    if (reach === 'WIFI') {
+      if (this.state.connectionType !== 'WIFI') {
+        this.setState({connection: true, connectionType: 'WIFI'})
+      }
+    } else {
+      if (this.state.connection) {
+        this.setState({connection: false, connectionType: null})
+      }
+    }
+  }
+
   readIPAddress() {
     try {
       AsyncStorage.getItem('mirrorIp')
-      .then((IP) => this.setState({IP}))
-    } catch(err) {
+        .then((ip) => {
+          if (ip) {
+            this.setState({mirrorIp: ip})
+          }
+        })
+    } catch (err) {
       console.error('err', err)
     }
   }
 
-  handleNetworkChange(reach) {
-    if (reach === 'WIFI') {
-      this.setState({connection: true})
-    } else {
-      this.setState({connection: false})
+  readLocation() {
+    try {
+      AsyncStorage.getItem('location')
+        .then((location) => {
+          console.log("loction", location)
+          if (location) {
+            this.setState({location})
+            return location
+          } else {
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                console.log("position", position)
+                let location = {
+                  lat: position.coords.latitude,
+                  lon: position.coords.longitude
+                }
+                this.setState({location: location})
+                AsyncStorage.setItem('location', JSON.stringify(location))
+                return location
+              }, (err) => console.log("err", err));
+          }
+        })
+    } catch (err) {
+      console.error('err', err)
     }
   }
 
-  saveIPAddress(IP) {
-    AsyncStorage.setItem("mirrorIp", IP)
-    this.setState({ IP })
+  saveIPAddress(ip) {
+    AsyncStorage.setItem('mirrorIp', ip)
+    this.setState({mirrorIp: ip})
   }
 
   toggleComponent(toggledComp) {
+    if (toggledComp.name = 'Weather') {
+      const weather = toggledComp
+      if (!weather.location) {
+        toggledComp.location = this.state.location || this.readLocation()
+      }
+    }
     this.setState({
       mirrorComponents: this.state.mirrorComponents.map((component) => {
         if (component.name === toggledComp.name) {
@@ -67,8 +113,9 @@ class App extends Component {
   }
 
   fetchMirrorComponents() {
-    fetch(`http://${this.state.IP}:5000/components`)
+    fetch(`http://${this.state.mirrorIp}:5000/components`)
     .then((response) => {
+      console.log("response", response)
         // for chrome bug
         setTimeout(() => null, 0)
         return response.json()
@@ -82,7 +129,7 @@ class App extends Component {
   }
 
   sendUpdate() {
-    fetch(`http://${this.state.IP}:5000/components`, {
+    fetch(`http://${this.state.mirrorIp}:5000/components`, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -90,26 +137,28 @@ class App extends Component {
       },
       body: JSON.stringify({
         components: this.state.mirrorComponents
+        })
       })
-    })
     .then((res) => res.json())
     .catch((err) => console.error(err))
   }
 
   render() {
-    const showView = this.state.connection && this.state.IP
+    console.log("render", this.state)
+    if (!this.state.connection) return <Splash />
+
     return (
       <View>
         {
-          showView
+          this.state.mirrorIp
           ? <Layout
               components={this.state.mirrorComponents}
               fetchMirrorComponents={this.fetchMirrorComponents.bind(this)}
               sendUpdate={this.sendUpdate.bind(this)}
               toggleComponent={this.toggleComponent.bind(this)} />
-          : <NotConnected
-              connection={this.state.connection}
-              save={this.saveIPAddress.bind(this)}/>
+            : <Setup
+                saveIPAddress={this.saveIPAddress.bind(this)}
+              />
         }
       </View>
     )

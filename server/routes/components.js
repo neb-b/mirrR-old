@@ -5,7 +5,7 @@ const router = express.Router()
 const fs = require('fs')
 const path = require('path')
 
-const filePath = '../data/list.json'
+const filePath = '../data/components.json'
 const file = path.join(__dirname, filePath)
 
 let mirrorComponents = require(filePath)

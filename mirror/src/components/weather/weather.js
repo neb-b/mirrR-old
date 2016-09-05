@@ -10,22 +10,19 @@ class Weather extends Component {
     super(props)
   }
 
-  componentDidMount() {
+  componentDidMount(const { props: {  } } = this) {
     const updateTimeInMinutes =  5
     const weatherUpdateInterval = 60000 * updateTimeInMinutes
 
-    const coords = {
-      latitude: 37.37,
-      longitude: -122.04
+    if (props.location) {
+      props.fetchWeather(coords)
     }
-
-    this.props.fetchWeather(coords)
     setInterval(() => {this.props.fetchWeather(coords)}, weatherUpdateInterval)
   }
 
-  render() {
-    const weather = this.props.weather.data
-    if (!weather) return <Loader component="weather" />
+  render({ location, weather: {data} }) {
+    if (!data) return <Loader component="weather" />
+    if (!location) return (<View><Text>No weather location</Text></View>)
 
     return (
       <div className="weather" id="weather">

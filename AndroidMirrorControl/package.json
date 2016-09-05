@@ -11,6 +11,9 @@
     "react-native-button": "^1.6.0",
     "react-native-drawer": "^2.2.6",
     "react-native-md-textinput": "^2.0.4",
-    "react-native-side-menu": "^0.20.0"
+    "react-native-side-menu": "^0.20.0",
+    "react-native-simple-radio-button": "^2.2.0",
+    "react-router": "^2.7.0",
+    "react-router-native": "^2.0.0-alpha.4"
   }
 }

@@ -3,7 +3,9 @@ import {
   StyleSheet,
   View,
   Text,
-  TextInput
+  TextInput,
+  TouchableHighlight,
+  Modal
 } from 'react-native';
 import Button from 'react-native-button'
 
@@ -28,7 +30,7 @@ const styles = StyleSheet.create({
     padding :10,
     fontSize: 16,
   },
-  save: {
+  default: {
     color: 'white',
     backgroundColor: '#f4583d',
   },
@@ -37,21 +39,51 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderWidth: 1,
     borderColor: '#f4583d'
+  },
+  modal: {
+    height: 300,
+    width: 500,
+    backgroundColor: 'red'
   }
 })
 
-class AddIPAddress extends Component {
+class Setup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: ''
+      text: '',
+      modalVisible: false
      }
+  }
+
+  renderModal() {
+    return null
+    // return (
+      //  <Modal
+      //    style={styles.modal}
+      //    animationType={"slide"}
+      //    transparent={false}
+      //    visible={this.state.modalVisible}
+      //    onRequestClose={() => {alert("Modal has been closed.")}}
+      //    >
+      //   <View style={{marginTop: 22}}>
+      //      <Text>Hello World!</Text>
+       //
+      //      <Button
+      //        style={[styles.button, styles.default]}
+      //        onPress={() => this.setState({modalVisible: false})}>
+      //        <Text>Got it</Text>
+      //      </Button>
+      //    </View>
+      //  </Modal>
+    //  )
   }
 
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Enter your Raspberry Pi&#39;s IP address</Text>
+        {this.state.modalVisible && this.renderModal()}
         <View>
           <TextInput
             style={styles.input}
@@ -61,13 +93,13 @@ class AddIPAddress extends Component {
             />
         </View>
         <Button
-          style={[styles.button, styles.save]}
-          onPress={() => this.props.save(this.state.text)} >
+          style={[styles.button, styles.default]}
+          onPress={() => this.props.saveIPAddress('mirrorIp', this.state.text)} >
           Save
         </Button>
         <Button
           style={[styles.button, styles.inverse]}
-          >
+          onPress={() => this.setState({modalVisible: true})} >
           How do I find the IP address?
         </Button>
       </View>
@@ -75,4 +107,4 @@ class AddIPAddress extends Component {
   }
 }
 
-export default AddIPAddress
+export default Setup
