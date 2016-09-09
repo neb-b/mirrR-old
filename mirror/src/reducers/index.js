@@ -6,7 +6,7 @@ import TwitterReducer from './reducer_twitter'
 import GoogleReducer from './reducer_google'
 
 const rootReducer = combineReducers({
-  components: ComponentReducer,
+  currentComponents: ComponentReducer,
   weather: WeatherReducer,
   news: NewsReducer,
   tweets: TwitterReducer,

@@ -28,7 +28,6 @@ const availableComponents = {
 class App extends Component {
   constructor(props) {
     super(props)
-
     this.state = { currentComponents: null }
     this.renderComponents = this.renderComponents.bind(this)
 
@@ -46,14 +45,13 @@ class App extends Component {
 
   componentWillReceiveProps(response) {
     this.setState({
-      currentComponents: response.components.data
+      currentComponents: response.currentComponents.data
     })
   }
 
   // Function that takes the name of a component and returns the actual component
   // Creates NewComp from availableComponents
   renderComponents(component) {
-    console.log("compoennt", component)
     if (component.active) {
       const NewComp = availableComponents[component.name]
       return <NewComp key={component.name} {...component}/>
@@ -63,7 +61,6 @@ class App extends Component {
 
   // Render loads components from props first
   render() {
-    console.log("render", this.state)
     const components = this.state.currentComponents
     if (!components) return <Loader component="app" />
 
@@ -75,8 +72,8 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ components }) {
-  return { components }
+function mapStateToProps({ currentComponents }) {
+  return { currentComponents }
 }
 
 export default connect(mapStateToProps, { fetchComponents })(App)
