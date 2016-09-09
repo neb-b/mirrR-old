@@ -33,12 +33,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
-app.use(function(req, res, next) {
-  var ip_info = get_ip(req);
-  console.log('ip_info', ip_info)
-  // req.ip = ip_info.clientIp
-  next();
-});
 
 // Routes
 app.use('/', require('./routes/index'))

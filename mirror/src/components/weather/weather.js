@@ -10,34 +10,35 @@ class Weather extends Component {
     super(props)
   }
 
-  componentDidMount(const { props: {  } } = this) {
+  componentDidMount() {
     const updateTimeInMinutes =  5
     const weatherUpdateInterval = 60000 * updateTimeInMinutes
-
-    if (props.location) {
-      props.fetchWeather(coords)
+    const coords = this.props.location
+    if (coords) {
+      this.props.fetchWeather(coords)
+      setInterval(() => {this.props.fetchWeather(coords)}, weatherUpdateInterval)
     }
-    setInterval(() => {this.props.fetchWeather(coords)}, weatherUpdateInterval)
   }
 
-  render({ location, weather: {data} }) {
+  render() {
+    const { weather: { data }, location } = this.props
+
     if (!data) return <Loader component="weather" />
     if (!location) return (<View><Text>No weather location</Text></View>)
 
     return (
       <div className="weather" id="weather">
         <div className="weather_current">
-          <h1 className="weather_current_temp">{weather.currently.apparentTemperature.toFixed(0)}°</h1>
-          {getWeatherIcon(weather.currently.icon)}
+          <h1 className="weather_current_temp">{data.currently.apparentTemperature.toFixed(0)}°</h1>
+          {getWeatherIcon(data.currently.icon)}
         </div>
-        <p className="weather_summary">{weather.hourly.summary}</p>
+        <p className="weather_summary">{data.hourly.summary}</p>
       </div>
     )
   }
 }
 
 function mapStateToProps({ weather }) {
-
   return { weather }
 }
 

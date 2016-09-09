@@ -11,8 +11,8 @@ const options = {
 
 const forecast = new Forecast(options)
 
-router.get('/', function(req, res) {
-  getWeather(req.body.location, function(err, weather) {
+router.get('/:lat/:lon', function(req, res) {
+  getWeather(req.params, function(err, weather) {
     res.send(weather)
   })
 })

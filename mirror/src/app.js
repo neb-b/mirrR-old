@@ -29,8 +29,7 @@ class App extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { components: null }
-    this.props.fetchComponents()
+    this.state = { currentComponents: null }
     this.renderComponents = this.renderComponents.bind(this)
 
     const url = 'http://localhost:5000'
@@ -39,6 +38,10 @@ class App extends Component {
     socket.on('update-components', (currentComponents) => {
       this.setState({ currentComponents })
     })
+  }
+
+  componentDidMount() {
+    this.props.fetchComponents()
   }
 
   componentWillReceiveProps(response) {
@@ -50,6 +53,7 @@ class App extends Component {
   // Function that takes the name of a component and returns the actual component
   // Creates NewComp from availableComponents
   renderComponents(component) {
+    console.log("compoennt", component)
     if (component.active) {
       const NewComp = availableComponents[component.name]
       return <NewComp key={component.name} {...component}/>
@@ -59,6 +63,7 @@ class App extends Component {
 
   // Render loads components from props first
   render() {
+    console.log("render", this.state)
     const components = this.state.currentComponents
     if (!components) return <Loader component="app" />
 

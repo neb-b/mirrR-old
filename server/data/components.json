@@ -17,14 +17,14 @@
   },
   {
   "name":"Twitter",
-  "active":false
+  "active":true
   },
   {
   "name":"Weather",
   "active":true,
   "location": {
-    "lat": "",
-    "lon": ""
+    "lat": "37",
+    "lon": "-122"
   }
   }
 ]
