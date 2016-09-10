@@ -1,7 +1,7 @@
 [
   {
   "name":"Google",
-  "active":true
+  "active":false
   },
   {
   "name":"Greeting",
@@ -9,22 +9,22 @@
   },
   {
   "name":"News",
-  "active":true
+  "active":false
   },
   {
   "name":"Time",
-  "active":true
+  "active":false
   },
   {
   "name":"Twitter",
-  "active":true
+  "active":false
   },
   {
   "name":"Weather",
-  "active":true,
+  "active":false,
   "location": {
-    "lat": "37",
-    "lon": "-122"
+    "lat": "",
+    "lon": ""
   }
   }
 ]

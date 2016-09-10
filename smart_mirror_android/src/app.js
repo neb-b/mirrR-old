@@ -68,7 +68,7 @@ class App extends Component {
         .then((location) => {
           console.log("loction", location)
           if (location) {
-            this.setState({JSON.parse(location)})
+            this.setState({location})
             return location
           } else {
             navigator.geolocation.getCurrentPosition(
@@ -98,10 +98,9 @@ class App extends Component {
     if (toggledComp.name = 'Weather') {
       const weather = toggledComp
       if (!weather.location) {
-        weather.location = this.state.location || this.readLocation()
+        toggledComp.location = this.state.location || this.readLocation()
       }
     }
-
     this.setState({
       mirrorComponents: this.state.mirrorComponents.map((component) => {
         if (component.name === toggledComp.name) {
