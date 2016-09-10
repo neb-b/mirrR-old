@@ -4,7 +4,7 @@ import { fetchTrends } from '../../actions/action_google'
 import Loader from '../loader/loader'
 
 
-export default class Google extends Component {
+class Google extends Component {
   constructor(props) {
     super(props)
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { fetchNews } from '../../actions/action_news'
 import Loader from '../loader/loader'
 
-export default class News extends Component {
+class News extends Component {
   constructor(props) {
     super(props)
     this.props.fetchNews()
