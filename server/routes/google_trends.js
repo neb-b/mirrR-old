@@ -7,9 +7,9 @@ require('dotenv').config()
 
 
 router.get('/', function(req, res, next) {
-    googleTrends.top30in30(function(err, results) {
-        res.send(results)
-    })
+  googleTrends.top30in30(function(error, results) {
+    res.status(error ? 400 : 200).send(error || results);
+  })
 })
 
 module.exports = router

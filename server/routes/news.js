@@ -2,10 +2,10 @@
 
 const express = require('express')
 const router = express.Router()
+const nytTop = require('nyt-top')
 require('dotenv').config()
 
 const API_KEY = process.env.NYT_API_KEY
-const nytTop = require('nyt-top')
 nytTop.key(API_KEY)
 
 router.get('/', function(req, res, next) {

@@ -25,7 +25,6 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
-    "annyang": "^2.4.0",
     "axios": "^0.13.0",
     "babel-preset-stage-1": "^6.1.18",
     "forecast-io": "^1.0.2",
@@ -34,9 +33,7 @@
     "progressbar.js": "^1.0.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "react-native-loading-spinner-overlay": "^0.3.0",
     "react-redux": "^4.4.5",
-    "react-router": "^2.6.0",
     "redux": "^3.5.2",
     "redux-promise": "^0.5.3",
     "request": "^2.72.0",
