@@ -1,6 +1,6 @@
 {
   "name": "react-smart-mirror",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A smart mirror made with React",
   "main": "app.js",
   "repository": "https://github.com/seanyesmunt/react-mirror",
