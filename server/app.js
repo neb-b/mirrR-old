@@ -2,7 +2,6 @@
 
 const express = require('express')
 const path = require('path')
-const favicon = require('serve-favicon')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
@@ -37,9 +36,7 @@ app.use('/weather', require('./routes/weather'))
 app.use('/news', require('./routes/news'))
 app.use('/twitter', require('./routes/twitter'))
 app.use('/google', require('./routes/google_trends'))
-app.use('/calendar', require('./routes/calendar'))
 app.use('/reddit', require('./routes/reddit'))
-app.use('/timer', require('./routes/timer'))
 
 app.get('/favicon.ico', function(req, res) {
     res.send(200)
