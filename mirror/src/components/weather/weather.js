@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
 import { fetchWeather } from '../../actions/action_weather'
 import Loader from '../loader/loader'
 import getWeatherIcon from './weather_icon'
