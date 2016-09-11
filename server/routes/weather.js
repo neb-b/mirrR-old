@@ -12,14 +12,14 @@ const options = {
 const forecast = new Forecast(options)
 
 router.get('/:lat/:lon', function(req, res) {
-  getWeather(req.params, function(err, weather) {
+  getWeather(req.params, function(error, weather) {
     res.status(error ? 400 : 200).send(error|| weather);
   })
 })
 
 function getWeather(location, cb) {
-  forecast.get(location.lat, location.lon, function (err, res, data) {
-    if(err) cb(err)
+  forecast.get(location.lat, location.lon, function (error, res, data) {
+    if(error) cb(error)
     cb(null, data)
   })
 

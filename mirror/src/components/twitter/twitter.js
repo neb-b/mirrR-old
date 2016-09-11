@@ -7,16 +7,15 @@ import stringToDate from './twitter_date'
 class Twitter extends Component {
   constructor(props) {
     super(props)
-    this.props.fetchTweets()
 
     this.twitterUpdate = null
-
     this.checkRetweeted = this.checkRetweeted.bind(this)
   }
 
   componentDidMount() {
     const updateTimeinMinutes = 10
     const twitterUpdateInterval = 60000 * updateTimeinMinutes
+    this.props.fetchTweets()
 
     this.twitterUpdate = setInterval(this.props.fetchTweets, twitterUpdateInterval)
   }
