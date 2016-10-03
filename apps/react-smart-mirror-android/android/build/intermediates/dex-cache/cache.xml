@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.11.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="98786c1770b531b9194fb6448b2a2692c64074b6">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/classes-4a224826af703e2b62d03cc2b566a1cdf768653c.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/exploded-aar/com.facebook.soloader/soloader/0.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/classes-17c8cb03a820f35607e2d1d6d3a7118553a76b58.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/classes-c78d24308d4499d01ba5b6a449d87bb3be57894c.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.31.0/jars/libs/infer-annotations-1.5.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="841543b0cb82ebcb59e60c73c4514afa57888ca0">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/infer-annotations-1.5-94fdb0f917ec53febdb23d5e0f1622d9e9ecb58f.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0-f7e0eae9a7801f0a6caad6f3798ee51dbe1e024d.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/okhttp-3.4.1-8d9fdf5942cad05e14d4b543fb2abc4c538d0ab4.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/library-2.4.0-8269b79b4934d56fee6639932dd35ac93d5b4ec9.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.11.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3341b66c54367e777a0647e2db96c045329bfeab">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/classes-4b49612933038819528b762a0e27a5c6f191c903.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/classes-8fc476e92464aa9fe609d2ddda3338ab76cd42b0.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/okio-1.9.0-6aba09e82f84c97ef9455d9397cda29be8d04951.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/0.11.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ca63c521b5745ae9a09629d7ca67ff6bc2a967fe">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/classes-29691ce958cfc4b4942aa8e43b88bb30c2287e5f.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0-07fdc78edb94008ff326b73feb8309221a4bd260.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-ws/3.4.1/8ace66ef7002d98f633377c9e67daeeb196d8c3b/okhttp-ws-3.4.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8ace66ef7002d98f633377c9e67daeeb196d8c3b">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/okhttp-ws-3.4.1-3b907da66696106241ac2aa6e3d258217e80b6d6.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/0.11.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="2b8a01ad9da5d26d0067894c22e87597bca2c500">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/classes-23e4734cc2415ae2df68a2765cf29c71ac6b003b.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.11.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1137942adeb03984c1311b662363dd38fc238fd3">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/classes-208aa00ae92b1fa9cbc3afbd33d2294756d03756.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.2.3/1a0113da2cab5f4c216b4e5e7c1dbfaa67087e14/jackson-core-2.2.3.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1a0113da2cab5f4c216b4e5e7c1dbfaa67087e14">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/jackson-core-2.2.3-bbfee32ba9b70c44b15824e7c14bb2f8cd3deae3.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.11.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d31aadf33187c37a7cd63dc1b769f8c6e33f78c3">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/classes-435eb44df7eb4a6e4a626cd9241c0eb276c5cb3b.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.31.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8505ca79a0abc3ef116f9c197b7d721ee2453066">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/classes-be9654d61bdb726318878b323f500787389f57ad.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.4.1/63994437f62bc861bc20c605d12962f7246116d1/okhttp-urlconnection-3.4.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="63994437f62bc861bc20c605d12962f7246116d1">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.4.1-8beee8527e9b234fd801355f3c7ddcd16435b5d3.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3be474b1b21b31cf2fa93fe6bd641ae108d96452">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/classes-12aa174df40a77f3edeab5a76db6fcd415176cc4.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.2.1/support-annotations-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ccb693bc0774fcb637246f7360de25b4af7df318">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/support-annotations-23.2.1-330478bd697599f6276bcc6f3de5dbcbc28023c8.jar" />
+    </item>
+    <item
+        jar="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/jars/libs/internal_impl-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="607a3d0b8013b4ccbfeb0b7cb293351994e021fb">
+        <dex dex="/Users/seanyesmunt/Workspace/react-smart-mirror-android/android/app/build/intermediates/pre-dexed/debug/internal_impl-23.2.1-d0858f05d3f64816bc0c48cece89a34821ecd972.jar" />
+    </item>
+
+</items>
