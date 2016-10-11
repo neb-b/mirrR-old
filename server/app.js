@@ -24,6 +24,7 @@ app.use(function(req, res, next) {
   next()
 })
 
+app.enable('trust proxy')
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))

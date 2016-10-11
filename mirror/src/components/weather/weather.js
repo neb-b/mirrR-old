@@ -12,26 +12,32 @@ class Weather extends Component {
   componentDidMount() {
     const updateTimeInMinutes =  5
     const weatherUpdateInterval = 60000 * updateTimeInMinutes
-    const coords = this.props.location
-    if (coords) {
-      this.props.fetchWeather(coords)
-      setInterval(() => {this.props.fetchWeather(coords)}, weatherUpdateInterval)
-    }
+
+    this.props.fetchWeather()
+    setInterval(() => {this.props.fetchWeather()}, weatherUpdateInterval)
   }
 
+_renderWeather({ data }) {
+  return (
+    <div>
+     <div className="weather_current">
+       <h1 className="weather_current_temp">{data.currently.apparentTemperature.toFixed(0)}°</h1>
+       {getWeatherIcon(data.currently.icon)}
+     </div>
+     <p className="weather_summary">{data.hourly.summary}</p>
+   </div>
+  )
+}
+
   render() {
-    const { weather: { data }, location } = this.props
-
-    if (!data) return <Loader component="weather" />
-    if (!location) return (<View><Text>No weather location</Text></View>)
-
+    const { weather } = this.props
     return (
       <div className="weather" id="weather">
-        <div className="weather_current">
-          <h1 className="weather_current_temp">{data.currently.apparentTemperature.toFixed(0)}°</h1>
-          {getWeatherIcon(data.currently.icon)}
-        </div>
-        <p className="weather_summary">{data.hourly.summary}</p>
+        {
+          Object.keys(weather).length
+            ? this._renderWeather(weather)
+            : <Loader component="weather" />
+        }
       </div>
     )
   }
