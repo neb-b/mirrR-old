@@ -16,6 +16,7 @@
     "morgan": "~1.6.1",
     "node-freegeoip": "0.0.1",
     "nyt-top": "^1.0.5",
+    "public-ip": "^2.0.1",
     "request": "^2.73.0",
     "satelize": "^0.2.0",
     "socket.io": "^1.4.8",
