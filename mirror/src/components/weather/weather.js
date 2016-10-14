@@ -24,7 +24,7 @@ _renderWeather({ data }) {
        <h1 className="weather_current_temp">{data.currently.apparentTemperature.toFixed(0)}°</h1>
        {getWeatherIcon(data.currently.icon)}
      </div>
-     <p className="weather_summary">{data.hourly.summary}</p>
+     <p className="weather_summary">{data.daily.summary}</p>
    </div>
   )
 }
