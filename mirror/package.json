@@ -30,7 +30,6 @@
     "forecast-io": "^1.0.2",
     "lodash": "^3.10.1",
     "moment": "^2.13.0",
-    "progressbar.js": "^1.0.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-redux": "^4.4.5",
