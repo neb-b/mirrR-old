@@ -5,7 +5,7 @@ export default (currentSky) => {
   // Darksky icons (currentSky)
   // clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night
   let icon
-  console.log("currentSky", currentSky)
+
   switch (currentSky) {
     case 'clear-day':
       icon='clear-day.png'
