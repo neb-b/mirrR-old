@@ -13,7 +13,7 @@ class Twitter extends Component {
   }
 
   componentDidMount() {
-    const updateTimeinMinutes = 10
+    const updateTimeinMinutes = 5
     const twitterUpdateInterval = 60000 * updateTimeinMinutes
     this.props.fetchTweets()
 

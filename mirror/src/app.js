@@ -8,7 +8,7 @@ import io from 'socket.io-client'
 // Import mirror components
 import Greeting from './components/greeting/greeting' // Small greeting
 import Time from './components/time/time'             // Clock with date
-import Weather from './components/weather/weather'    // Current temperature and 5 day forecast
+import Weather from './components/weather/weather'    // Current temperature and summary
 import News from './components/news/news'             // Top headlines from NYT
 import Twitter from './components/twitter/twitter'    // Current twitter timeline
 import Google from './components/google/google'       // Current Google trends
