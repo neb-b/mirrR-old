@@ -24,13 +24,13 @@ export default class Greeting extends Component {
 
   getTime() {
     const time = moment().format('hh a').split(' ')
-    const numTime = Number(time[0])
+    const hour = Number(time[0])
 
     if (time[1] === 'am') {
-      if (numTime > 5) return {time: 'morning'}
+      if (hour > 5 && hour !== 12) return {time: 'morning'}
       return {time: 'night'}
     } else {
-      if (numTime < 5 || numTime === 12) return {time: 'afternoon'}
+      if (hour < 5 || hour === 12) return {time: 'afternoon'}
       return {time: 'evening'}
     }
   }
