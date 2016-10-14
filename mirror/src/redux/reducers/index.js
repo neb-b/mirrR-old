@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
-import ComponentReducer from './reducer_components'
-import WeatherReducer from './reducer_weather'
-import NewsReducer from './reducer_news'
-import TwitterReducer from './reducer_twitter'
-import GoogleReducer from './reducer_google'
+import { ComponentReducer } from './components'
+import { WeatherReducer } from './weather'
+import { NewsReducer } from './news'
+import { TwitterReducer } from './twitter'
+import { GoogleReducer } from './google'
 
 const rootReducer = combineReducers({
   currentComponents: ComponentReducer,

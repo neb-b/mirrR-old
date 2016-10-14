@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchNews } from '../../actions/action_news'
+import { fetchNews } from '../../redux/actions/news'
 import Loader from '../loader/loader'
 
 class News extends Component {

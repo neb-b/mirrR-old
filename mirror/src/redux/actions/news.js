@@ -1,11 +1,8 @@
 import axios from 'axios'
-
-export const FETCH_NEWS = 'FETCH_NEWS'
+import { URL, NEWS, FETCH_NEWS } from '../constants/constants'
 
 export function fetchNews() {
-  const url = `http://localhost:5000/news`
-
-  const request = axios.get(url)
+  const request = axios.get(`${URL}/${NEWS}`)
 
   return {
     type: FETCH_NEWS,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchTrends } from '../../actions/action_google'
+import { fetchGoogle } from '../../redux/actions/google'
 import Loader from '../loader/loader'
 
 
@@ -12,12 +12,12 @@ class Google extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchTrends()
+    this.props.fetchGoogle()
 
     const updateTimeInHours = 3
     const updateInterval = 3600000 * updateTimeInHours
 
-    this.googleUpdate = setInterval(this.props.fetchTrends, updateInterval)
+    this.googleUpdate = setInterval(this.props.fetchGoogle, updateInterval)
   }
 
   componentWillUnmount() {
@@ -58,4 +58,4 @@ function mapStateToProps({ trends }) {
   return { trends }
 }
 
-export default connect(mapStateToProps, { fetchTrends })(Google)
+export default connect(mapStateToProps, { fetchGoogle })(Google)

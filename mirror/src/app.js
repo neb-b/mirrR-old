@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchComponents } from './actions/action_components'
+import { fetchComponents } from './redux/actions/components'
+import { URL } from './redux/constants/constants'
 import Loader from './components/loader/loader'
 import io from 'socket.io-client'
 
@@ -31,8 +32,7 @@ class App extends Component {
     this.state = { currentComponents: null }
     this.renderComponents = this.renderComponents.bind(this)
 
-    const url = 'http://localhost:5000'
-    const socket = io(url)
+    const socket = io(URL)
 
     socket.on('update-components', (currentComponents) => {
       this.setState({ currentComponents })
