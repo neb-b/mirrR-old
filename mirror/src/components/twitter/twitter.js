@@ -53,11 +53,14 @@ class Twitter extends Component {
 
   render() {
     const tweets = this.props.tweets.data
-    if (!tweets) return <Loader component="twitter" />
 
     return (
       <ul className="twitter">
-        {tweets.map(this.renderCurrentTweets)}
+        {
+          tweets
+            ? tweets.map(this.renderCurrentTweets)
+            : <Loader component="twitter" />
+        }
       </ul>
     )
   }
@@ -68,8 +71,6 @@ function mapStateToProps({ tweets }) {
 }
 
 export default connect(mapStateToProps, { fetchTweets })(Twitter)
-
-
 
 
 // Top current hashtags, not setup on backend
