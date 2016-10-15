@@ -6,19 +6,16 @@ export default class Clock extends Component {
 
     this.timeUpdate = null
 
-    // Initialize state with current time
     this.state = {
       time: moment().format('h:mm a'),
       date: moment().format('ddd MMMM Do')
     }
   }
 
-  // After component mounts, call setInterval to update time every second
   componentDidMount() {
     this.timeUpdate = setInterval(this.updateTime.bind(this), 1000)
   }
 
-  // If component unmounts, clearInterval
   componentWillUnmount() {
     if (this.timeUpdate) clearInterval(this.timeUpdate)
   }

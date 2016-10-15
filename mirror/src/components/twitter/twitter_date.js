@@ -3,32 +3,33 @@
 // "x minutes ago"
 
 export default (tdate) => {
-  const user_date = new Date();
+  const user_date = new Date()
 
-  let system_date = new Date(Date.parse(tdate));
+  let system_date = new Date(Date.parse(tdate))
   if (K.ie) {
       system_date = Date.parse(tdate.replace(/( \+)/, ' UTC$1'))
   }
-  const diff = Math.floor((user_date - system_date) / 1000);
-  if (diff <= 1) {return "just now";}
-  if (diff < 20) {return diff + " seconds ago";}
-  if (diff < 40) {return "half a minute ago";}
-  if (diff < 60) {return "less than a minute ago";}
-  if (diff <= 90) {return "one minute ago";}
-  if (diff <= 3540) {return Math.round(diff / 60) + " min ago";}
-  if (diff <= 5400) {return "1 hour ago";}
-  if (diff <= 86400) {return Math.round(diff / 3600) + " hours ago";}
+  const diff = Math.floor((user_date - system_date) / 1000)
+
+  if (diff <= 1) {return "just now"}
+  if (diff < 20) {return diff + " seconds ago"}
+  if (diff < 40) {return "half a minute ago"}
+  if (diff < 60) {return "less than a minute ago"}
+  if (diff <= 90) {return "one minute ago"}
+  if (diff <= 3540) {return Math.round(diff / 60) + " min ago"}
+  if (diff <= 5400) {return "1 hour ago"}
+  if (diff <= 86400) {return Math.round(diff / 3600) + " hours ago"}
+
   return "on " + system_date;
-  }
+}
 
 // from http://widgets.twimg.com/j/1/widget.js
 const K = function () {
-    const a = navigator.userAgent;
-    return {
-        ie: a.match(/MSIE\s([^;]*)/)
-    }
+  const a = navigator.userAgent;
+  return {
+    ie: a.match(/MSIE\s([^;]*)/)
+  }
 }();
-
 
 const months = {
   Jan: '01',

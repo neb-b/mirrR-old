@@ -10,7 +10,7 @@ import Greeting from './components/greeting/greeting' // Small greeting
 import Time from './components/time/time'             // Clock with date
 import Weather from './components/weather/weather'    // Current temperature and summary
 import News from './components/news/news'             // Top headlines from NYT
-import Twitter from './components/twitter/twitter'    // Current twitter timeline
+import TwitterFeed from './components/twitter/twitter'    // Current twitter timeline
 import Google from './components/google/google'       // Current Google trends
 
 const availableComponents = {
@@ -18,14 +18,10 @@ const availableComponents = {
   Time,
   Weather,
   News,
-  Twitter,
+  TwitterFeed,
   Google,
 }
 
-// Fetch current components to be used from Node server
-// Receive list of components that will be used in this.props.components
-// Map over list and return the actual component from availableComponents
-// If new list of components emitted from socket, setState and re-render
 class App extends Component {
   constructor(props) {
     super(props)
@@ -43,14 +39,12 @@ class App extends Component {
     this.props.fetchComponents()
   }
 
-  componentWillReceiveProps(response) {
+  componentWillReceiveProps({ currentComponents: { data }}) {
     this.setState({
-      currentComponents: response.currentComponents.data
+      currentComponents: data
     })
   }
 
-  // Function that takes the name of a component and returns the actual component
-  // Creates NewComp from availableComponents
   renderComponents(component) {
     if (component.active) {
       const NewComp = availableComponents[component.name]
@@ -59,21 +53,21 @@ class App extends Component {
     return null
   }
 
-  // Render loads components from props first
   render() {
-    const components = this.state.currentComponents
-    if (!components) return <Loader component="app" />
-
     return (
       <div>
-        {this.state.currentComponents.map(this.renderComponents)}
+        {
+          this.state.currentComponents
+            ? this.state.currentComponents.map(this.renderComponents)
+            : <Loader component="app" />
+        }
       </div>
     )
   }
 }
 
 function mapStateToProps({ currentComponents }) {
-  return { currentComponents }
+  return { currentComponents  }
 }
 
 export default connect(mapStateToProps, { fetchComponents })(App)

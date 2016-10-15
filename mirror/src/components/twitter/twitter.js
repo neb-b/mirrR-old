@@ -4,7 +4,7 @@ import { fetchTweets } from '../../redux/actions/twitter'
 import Loader from '../internal/loader'
 import stringToDate from './twitter_date'
 
-class Twitter extends Component {
+class TwitterFeed extends Component {
   constructor(props) {
     super(props)
 
@@ -52,13 +52,12 @@ class Twitter extends Component {
   }
 
   render() {
-    const tweets = this.props.tweets.data
-
+    const tweets = this.props.tweets
     return (
       <ul className="twitter">
         {
-          tweets
-            ? tweets.map(this.renderCurrentTweets)
+          tweets.data
+            ? tweets.data.map(this.renderCurrentTweets)
             : <Loader component="twitter" />
         }
       </ul>
@@ -70,7 +69,7 @@ function mapStateToProps({ tweets }) {
   return { tweets }
 }
 
-export default connect(mapStateToProps, { fetchTweets })(Twitter)
+export default connect(mapStateToProps, { fetchTweets })(TwitterFeed)
 
 
 // Top current hashtags, not setup on backend

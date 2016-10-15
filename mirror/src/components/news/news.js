@@ -33,18 +33,18 @@ class News extends Component {
 
   render() {
     // Take first 3 stories from NYT and map them into div with title and abstract
-    const news = this.props.news.data
+    const news = this.props.news
     const numberOfStories = 3
-
-    if (!news) return <Loader component="news"/>
 
     return (
       <div className="news">
         {
-          news
+          news.data
+          ? news.data
             .slice(0, numberOfStories)
             .map(this.renderNews)
-          }
+          : <Loader component="news"/>
+        }
       </div>
     )
   }

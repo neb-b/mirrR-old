@@ -37,17 +37,16 @@ class Google extends Component {
   }
 
   render() {
-    if (!this.props.trends) return <Loader component="trends" style="google_trends" />
-
-    const trends = this.props.trends.data.weeksList[4].daysList
-
+    const trends = this.props.trends && this.props.trends.data.weeksList[4].daysList
 
     return (
       <ul className="google_trends">
         {
-          trends
+          this.props.trends
+          ? trends
             .filter((trend) => trend.data)
             .map(this.renderTrends)
+          : <Loader component="trends" style="google_trends" />
         }
       </ul>
     )
