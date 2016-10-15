@@ -1,26 +1,32 @@
 [
   {
     "name":"Google",
+    "displayName":"Google",
     "active":true
   },
   {
     "name":"Greeting",
+    "displayName":"Greeting",
     "active":true
   },
   {
     "name":"News",
+    "displayName":"News Headlines",
     "active":true
   },
   {
     "name":"Time",
+    "displayName":"Clock",
     "active":true
   },
   {
     "name":"TwitterFeed",
+    "displayName":"Twitter Feed",
     "active":true
   },
   {
     "name":"Weather",
+    "displayName":"Weather",
     "active":true
   }
 ]
