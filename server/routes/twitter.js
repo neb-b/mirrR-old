@@ -13,7 +13,7 @@ const client = new Twitter({
 })
 
 router.get('/', function(req, res, next) {
-  client.get('statuses/home_timeline', {count: 50}, function(err, tweets, response){
+  client.get('statuses/home_timeline', {count: 200}, function(err, tweets, response){
     res.status(err ? 400 : 200).send(err || tweets);
   })
 })
