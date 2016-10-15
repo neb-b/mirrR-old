@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchTweets } from '../../redux/actions/twitter'
-import Loader from '../loader/loader'
+import Loader from '../internal/loader'
 import stringToDate from './twitter_date'
 
 class Twitter extends Component {

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchComponents } from './redux/actions/components'
 import { URL } from './redux/constants/constants'
-import Loader from './components/loader/loader'
+import Loader from './components/internal/loader'
 import io from 'socket.io-client'
 
 // Import mirror components

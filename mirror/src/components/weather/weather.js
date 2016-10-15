@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchWeather } from '../../redux/actions/weather'
-import Loader from '../loader/loader'
+import Loader from '../internal/loader'
 import getWeatherIcon from './weather_icon'
 
 class Weather extends Component {

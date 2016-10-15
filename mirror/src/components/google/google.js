@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchGoogle } from '../../redux/actions/google'
-import Loader from '../loader/loader'
+import Loader from '../internal/loader'
 
 
 class Google extends Component {
@@ -37,7 +37,7 @@ class Google extends Component {
   }
 
   render() {
-    if (!this.props.trends) return <Loader component="trends" />
+    if (!this.props.trends) return <Loader component="trends" style="google_trends" />
 
     const trends = this.props.trends.data.weeksList[4].daysList
 

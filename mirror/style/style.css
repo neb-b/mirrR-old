@@ -13,18 +13,10 @@ h1 {
   padding: 0;
 }
 
-.container {
-  width: 90%;
-  margin: 0 auto;
-  padding-bottom: 20px;
-}
-
 /* Greeting */
 .greeting {
   text-align: center;
-  padding-bottom: 50px;
 }
-
 
 /* Google Trends*/
 .google_trends {
@@ -46,6 +38,10 @@ h1 {
   font-size: .8em;
 }
 
+.google_trends .trend_text {
+  font-weight: 600;
+}
+
 
 /* Time */
 .time {
@@ -59,20 +55,7 @@ h1 {
   padding-right: 10px;
 }
 .time .date {
-  font-weight: 200;
-}
-
-/* Timer */
-.countdown_timer {
-  /*position: relative;*/
-}
-.countdown_progress {
-  margin-top: -200px;
-  margin-right: -65px;
-}
-.countdown_progress h2 {
-  margin-top: -100px;
-  text-align: center;
+  font-weight: 400;
 }
 
 
@@ -108,16 +91,17 @@ h1 {
 .news {
   position: absolute;
   bottom: 0;
-  right: 5%;
-  width: 30%;
+  right: 0;
+  width: 20%;
   min-width: 200px;
 }
 .news_title {
-  font-weight: 400;
+  font-weight: 600;
+  margin-top: 30px;
 }
 .news_abstract {
-  font-weight: 300;
-}
+  font-weight: 400;
+} 
 
 
 /* Twitter */

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchNews } from '../../redux/actions/news'
-import Loader from '../loader/loader'
+import Loader from '../internal/loader'
 
 class News extends Component {
   constructor(props) {

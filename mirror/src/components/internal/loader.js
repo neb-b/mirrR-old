@@ -2,10 +2,10 @@ import React, { Compnent } from 'react'
 
 // A loader that will show a loading message for
 // the component that was passed in the props
-export default (props) => {
+export default ({component, style}) => {
   return (
-    <div className={props.component}>
-      <p>Loading {props.component}...</p>
+    <div className={`${component} ${style}`}>
+      <p>Loading {component}...</p>
     </div>
   )
 }
