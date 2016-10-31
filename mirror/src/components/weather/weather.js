@@ -44,6 +44,7 @@ _renderWeather({ data }) {
 }
 
 function mapStateToProps({ weather }) {
+  console.log("weather", weather)
   return { weather }
 }
 

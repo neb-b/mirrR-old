@@ -6,11 +6,16 @@ const router = express.Router()
 const Forecast = require('forecast.io')
 const publicIp = require('public-ip')
 const freegeoip = require('node-freegeoip')
+let APIKey
+let location
+let forecast
 
-const options = {
-  APIKey: process.env.DARKSKY_API_KEY
+if (process.env.DARKSKY_API_KEY) {
+  const options = {
+    APIKey: process.env.DARKSKY_API_KEY
+  }
+  forecast = new Forecast(options)
 }
-const forecast = new Forecast(options)
 
 router.get('/', function(req, res) {
   getWeather(function (err, weather) {
@@ -19,7 +24,6 @@ router.get('/', function(req, res) {
   })
 })
 
-let location
 function getLocation() {
   publicIp.v4().then((ip) => {
     freegeoip.getLocation(ip, function(err, payload) {
@@ -34,14 +38,13 @@ getLocation()
 
 
 function getWeather(cb) {
-  if (location) {
-    forecast.get(location.lat, location.lon, function (err, res, data) {
-      if (err) return cb(err)
-      cb(null, data)
-    })
-  } else {
-    cb('NO LOCATION')
-  }
+  if (!location) return cb('NO LOCATION')
+  if (!forecast) return cb('NO API KEY')
+
+  forecast.get(location.lat, location.lon, function (err, res, data) {
+    if (err) return cb(err)
+    cb(null, data)
+  })
 }
 
 

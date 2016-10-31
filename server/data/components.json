@@ -12,7 +12,7 @@
   {
     "name":"News",
     "displayName":"News Headlines",
-    "active":true
+    "active":false
   },
   {
     "name":"Time",
@@ -22,7 +22,7 @@
   {
     "name":"TwitterFeed",
     "displayName":"Twitter Feed",
-    "active":true
+    "active":false
   },
   {
     "name":"Weather",
